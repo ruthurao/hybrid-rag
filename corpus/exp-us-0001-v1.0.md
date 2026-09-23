@@ -4,7 +4,6 @@
 | --- | --- |
 | doc_id | exp-us-0001 |
 | record_id | exp-us-0001-v1.0 |
-| title | Employee Expense Reimbursement Procedure |
 | family | expense_reimbursement_procedure |
 | version | v1.0 |
 | effective_date | 2025-09-01 |
@@ -52,3 +51,19 @@ Where a claim is submitted without a required receipt, exceeds the meal cap with
 ## EXP-7.1 Recording and outcome
 
 The outcome of each claim, including the amount submitted, the amount approved, and any supervisor approval obtained, is recorded against the original claim record. A record of any deduction for alcohol, any excess meal expense approved, and any late submission approved is retained with the claim for audit purposes.
+
+## EXP-8.1 FAQ
+
+These answers do not replace the numbered rules above.
+
+Q: Can I claim three meals on a travel day as one pile?
+A: No. Each meal stands alone. Lunch and dinner are two lines, each with its own cap.
+
+Q: I paid cash and lost the slip for a client lunch that cost more than a coffee. Can I still submit?
+A: If that one line is over the receipt threshold, the claim comes back until a receipt is attached. Writing "client lunch" in the purpose box does not replace the slip.
+
+Q: Can a late claim from last month ride along with this month's close?
+A: No. Late claims need the supervisor before anyone processes them. Close does not reopen an expense window.
+
+Q: Can a drink stay on the bill if I mostly ate food?
+A: No. Take the drink off before you submit or the whole claim comes back.
