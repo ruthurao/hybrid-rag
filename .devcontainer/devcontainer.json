@@ -1,0 +1,15 @@
+{
+  "name": "hybrid-rag",
+  "image": "python:3.12-bookworm",
+  "workspaceFolder": "/workspace/hybrid-rag",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace/hybrid-rag,type=bind",
+  "containerEnv": {
+    "PYTHONPATH": "/workspace/hybrid-rag"
+  },
+  "postCreateCommand": "pip install -r requirements.txt",
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python"]
+    }
+  }
+}
