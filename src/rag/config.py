@@ -11,6 +11,10 @@ class Settings:
     collection_name: str = "policy_chunks"
     embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
     embedding_dim: int = 384
+    max_chunk_chars: int = 1000
+    # Below this rank a block never reaches the store. Untrusted content is
+    # reported at ingest and dropped, so personal data is not held at rest.
+    index_min_rank: int = 2
     vector_top_k: int = 10
     keyword_top_k: int = 10
     rrf_k: int = 60
