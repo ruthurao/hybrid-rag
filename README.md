@@ -28,7 +28,13 @@ pip install -r requirements.txt
 Logger smoke (Phase 1):
 
 ```bash
-python -c "from src.rag.logging import configure_logging, get_logger; configure_logging(); get_logger(ingest_run_id='smoke').info('ingest.start', event='ingest.start')"
+python -c "from src.rag.logging import configure_logging, get_logger; configure_logging(); get_logger(ingest_run_id='smoke').info('ingest.start')"
+```
+
+Quick loop (Phase 2) — screenshot the closer sentence winning:
+
+```bash
+python scripts/minimal_loop.py
 ```
 
 ## Commands (filled as phases land)

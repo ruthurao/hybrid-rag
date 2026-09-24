@@ -4,6 +4,8 @@ Lab-sized. JSON lines on stderr via `structlog`. Every answer also returns a `qu
 
 Never log full chunk text. Never log the MEC SharePoint/PII paste (`priya.shah`, `EE-4419`, last-four).
 
+Authority is logged as **counts per level**, never as payload. An unexpected distribution is the early warning that a derivation rule misfired and live answers are quietly missing content.
+
 ## Logger
 
 `src/rag/logging.py`
@@ -21,11 +23,11 @@ python -c "from src.rag.logging import configure_logging, get_logger; configure_
 
 | Event | Phase | Fields |
 | --- | --- | --- |
-| `ingest.start` | 3 | `ingest_run_id`, `pdf_count` |
-| `ingest.record` | 3 | `record_id`, `status`, `junk_tagged` (bool only) |
+| `ingest.start` | 3 (live) | `ingest_run_id`, `pdf_count` |
+| `ingest.record` | 3 (live) | `record_id`, `status`, `block_count`, `authority` (counts per level), `pii_blocks` (count) |
 | `ingest.chunk` | 4 | `record_id`, `section`, `chunk_id`, `content_type` |
 | `ingest.upsert` | 5 | `chunk_count`, `embedding_model` |
-| `ingest.done` | 3 | `record_count`, `chunk_count` |
+| `ingest.done` | 3 (live) | `record_count`, `chunk_count` (0 until Phase 5) |
 
 ## Query events
 
