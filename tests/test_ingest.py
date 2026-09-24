@@ -93,6 +93,25 @@ def test_account_code_stays_in_its_own_section():
     assert with_code == ["MEC-5.1"]
 
 
+def test_wrapped_cross_reference_does_not_start_a_section():
+    """A reference that wraps onto its own line reads as a heading and eats the
+    sentence it belongs to. Both of these end mid-clause when it does."""
+    _, records = ingest_pdfs(CORPUS)
+    close = _by_record_id(records)["mec-us-0001-v1.0"]
+    by_section = {b.section: b for b in close.blocks}
+    assert by_section["MEC-2.1"].text.rstrip().endswith("listed in Section\nMEC-4.1.")
+    assert by_section["MEC-8.1"].text.rstrip().endswith(
+        "MEC-7.1 stay with the close record."
+    )
+
+
+def test_section_ids_are_unique_within_a_record():
+    _, records = ingest_pdfs(CORPUS)
+    for record in records:
+        sections = [b.section for b in record.blocks if b.section]
+        assert len(sections) == len(set(sections)), record.metadata["record_id"]
+
+
 def test_ingest_logs_counts_not_payload(capsys, parse_log_lines):
     configure_logging()
     ingest_pdfs(CORPUS, ingest_run_id="log-run")

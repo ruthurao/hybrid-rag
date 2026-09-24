@@ -37,7 +37,11 @@ class AnnotationPolicy:
     not a code change. Moves to YAML unchanged if the catalog grows.
     """
 
-    section_heading: str = r"^([A-Z]{2,4}-\d+\.\d+)\b\s*(.*)$"
+    # A heading carries a capitalised title and no sentence punctuation. A
+    # cross-reference that wraps onto its own line ("MEC-7.1 stay with the
+    # close record.") looks like a heading without this and steals the text.
+    section_heading: str = r"^([A-Z]{2,4}-\d+\.\d+)[ \t]+([A-Z][^.\n]*)$"
+    section_id: str = r"^[A-Z]{2,4}-\d+\.\d+$"
     thematic_break: str = r"^-{3,}$"
     page_furniture: tuple[str, ...] = (
         r"^Page\s+\d+$",

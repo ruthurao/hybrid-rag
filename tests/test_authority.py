@@ -92,6 +92,22 @@ def test_pii_detector_finds_email_and_employee_id():
     assert set(kinds) == {"email", "employee_id", "card_last_four"}
 
 
+def test_authority_reads_the_section_id_not_the_heading_pattern():
+    """Matching a heading line and validating an id are two jobs. While they
+    shared one pattern, tightening it demoted every section to untrusted."""
+    unrelated = AnnotationPolicy(section_heading=r"^never matches a heading$")
+    block = Block(
+        section="ZZ-1.1",
+        heading="ZZ-1.1 Purpose",
+        text="This policy governs the thing.",
+        start=0,
+        end=30,
+    )
+    annotate_blocks([block], "zz-us-0009-v1.0", unrelated)
+    assert block.authority == NORMATIVE
+    assert block.authority_reason == "numbered_section"
+
+
 def test_authority_counts_cover_every_level():
     counts = authority_counts(_annotate(SYNTHETIC))
     assert counts == {NORMATIVE: 1, ADVISORY: 1, UNTRUSTED: 1}

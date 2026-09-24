@@ -46,7 +46,7 @@ def _authority(block: Block, record_id: str, policy: AnnotationPolicy) -> tuple[
         return ADVISORY, "self_declared_non_binding"
     if block.content_type == "faq":
         return ADVISORY, "faq_shape"
-    if re.match(policy.section_heading, f"{block.section} "):
+    if re.match(policy.section_id, block.section):
         return NORMATIVE, "numbered_section"
     return UNTRUSTED, "unrecognized_structure"
 
