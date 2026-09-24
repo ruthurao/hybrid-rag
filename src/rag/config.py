@@ -17,6 +17,12 @@ class Settings:
     rerank_top_n: int = 4
     live_status: str = "current"
     live_authority_rank: int = 2
+    ocr_enabled: bool = True
+    ocr_min_confidence: float = 0.5
+    # A page with less text than this has no usable text layer, and an image
+    # shaped like the sheet on such a page is the page rather than an inset.
+    ocr_page_text_threshold: int = 50
+    ocr_page_aspect_tolerance: float = 0.15
 
 
 def default_settings(root: Path | None = None) -> Settings:

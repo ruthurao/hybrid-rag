@@ -2,12 +2,14 @@ from __future__ import annotations
 
 import re
 from pathlib import Path
+from typing import Sequence
 
 from pypdf import PdfReader
 
 from src.rag.authority import annotate_blocks
 from src.rag.config import AnnotationPolicy, default_policy
-from src.rag.models import Block, Record
+from src.rag.models import IMAGE_TEXT, INSET, PAGE, Block, ImageAsset, Record
+from src.rag.ports.ocr import OcrAdapter
 
 REQUIRED_FIELDS = (
     "doc_id",
@@ -29,13 +31,19 @@ HEADER_LINE = re.compile(
 
 
 class PdfParser:
-    """Text layer only, OCR off. Extracts and segments; it does not judge."""
+    """Extracts and segments; it does not judge."""
 
-    def __init__(self, policy: AnnotationPolicy | None = None) -> None:
+    def __init__(
+        self,
+        policy: AnnotationPolicy | None = None,
+        ocr: OcrAdapter | None = None,
+    ) -> None:
         self.policy = policy or default_policy()
+        self.ocr = ocr
 
     def parse(self, path: Path) -> Record:
-        text = _extract_text(path)
+        images = self.ocr.read(path) if self.ocr else []
+        text = _extract_text(path, _page_substitutes(images))
         if not text.strip():
             raise ValueError(f"empty extract: {path}")
         metadata = _parse_header(text, self.policy)
@@ -47,13 +55,53 @@ class PdfParser:
             raise ValueError(f"missing title and heading in {path}")
         metadata["title"] = title
         blocks = segment_blocks(text, self.policy)
+        blocks.extend(_image_blocks(images, len(text)))
         annotate_blocks(blocks, metadata["record_id"], self.policy)
-        return Record(path=path, title=title, metadata=metadata, blocks=blocks)
+        return Record(
+            path=path, title=title, metadata=metadata, blocks=blocks, images=images
+        )
 
 
-def _extract_text(path: Path) -> str:
-    reader = PdfReader(str(path))
-    return "\n".join((page.extract_text() or "") for page in reader.pages)
+def _page_substitutes(images: Sequence[ImageAsset]) -> dict[int, str]:
+    """Text for pages that are an image. A scan is the document, so its
+    transcription joins the text layer and is segmented like any other page."""
+    return {
+        page: asset.text
+        for asset in images
+        if asset.role == PAGE and asset.text
+        for page in asset.pages
+    }
+
+
+def _image_blocks(images: Sequence[ImageAsset], offset: int) -> list[Block]:
+    """Text read from insets, never routed through the segmenter.
+
+    The card in the close procedure opens with "MEC-5.1 Use the coding table",
+    which the heading pattern would happily accept. A heading painted onto a
+    graphic that sits on a page is not a heading in the document, so these
+    carry no section and the ordinary structural rule leaves them untrusted.
+    """
+    return [
+        Block(
+            section=None,
+            heading="",
+            text=asset.text,
+            start=offset,
+            end=offset + len(asset.text),
+            content_type=IMAGE_TEXT,
+        )
+        for asset in images
+        if asset.role == INSET and asset.text
+    ]
+
+
+def _extract_text(path: Path, page_substitutes: dict[int, str] | None = None) -> str:
+    page_substitutes = page_substitutes or {}
+    pages = []
+    for number, page in enumerate(PdfReader(str(path)).pages, start=1):
+        layer = page.extract_text() or ""
+        pages.append(layer if layer.strip() else page_substitutes.get(number, layer))
+    return "\n".join(pages)
 
 
 def segment_blocks(text: str, policy: AnnotationPolicy | None = None) -> list[Block]:

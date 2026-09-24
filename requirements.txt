@@ -1,5 +1,7 @@
 sentence-transformers
 chromadb
 pypdf
+pillow
+rapidocr-onnxruntime
 pytest
 structlog

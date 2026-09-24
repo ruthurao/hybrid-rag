@@ -38,12 +38,36 @@ class Block:
     pii_kinds: tuple[str, ...] = ()
 
 
+PAGE = "page"
+INSET = "inset"
+
+
+@dataclass
+class ImageAsset:
+    """An embedded image and what we managed to read from it.
+
+    One asset per distinct image, however many pages it is placed on.
+    text stays None when nothing was read, and reason says why. role says
+    whether the image carries its page or merely sits on it, which decides
+    whether the text it holds is part of the document or an annotation of it.
+    """
+
+    digest: str
+    pages: tuple[int, ...]
+    width: int
+    height: int
+    role: str = INSET
+    text: str | None = None
+    reason: str = "ocr_disabled"
+
+
 @dataclass
 class Record:
     path: Path
     title: str
     metadata: dict[str, Any]
     blocks: list[Block] = field(default_factory=list)
+    images: list[ImageAsset] = field(default_factory=list)
 
 
 @dataclass
