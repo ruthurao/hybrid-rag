@@ -100,4 +100,4 @@ def test_pipeline_id_is_hybrid(store):
         "test-run",
         cache=InMemoryAnswerCache(),
     )
-    assert answer.query_trace.pipeline_id == "hybrid-v1"
+    assert answer.query_trace.pipeline_id == "rerank-v1"

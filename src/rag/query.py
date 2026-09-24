@@ -12,7 +12,9 @@ from src.rag.logging import get_logger
 from src.rag.models import Answer, QueryTrace
 from src.rag.ports.cache import AnswerCache
 from src.rag.ports.embedder import EmbeddingAdapter
+from src.rag.ports.rerank import Reranker
 from src.rag.ports.store import VectorStoreAdapter
+from src.rag.rerank import IdentityReranker
 
 SCOPE_LIVE = "live"
 SCOPE_DIAGNOSIS = "diagnosis"
@@ -39,6 +41,7 @@ def ask(
     settings: Settings | None = None,
     scope: str = SCOPE_LIVE,
     request_id: str | None = None,
+    reranker: Reranker | None = None,
 ) -> Answer:
     """Cache, then hybrid retrieve (or per-version compare), then generate.
 
@@ -47,6 +50,7 @@ def ask(
     """
     settings = settings or default_settings()
     cache = cache or InMemoryAnswerCache()
+    reranker = reranker or IdentityReranker()
     request_id = request_id or uuid4().hex
     started = time.perf_counter()
     if detect_comparison_intent(query, settings):
@@ -100,6 +104,14 @@ def ask(
                 for hit in hits
                 if hit.chunk.metadata.get("status") == settings.live_status
             ]
+        hits = reranker.rerank(query, hits, settings.rerank_top_n)
+        log.info(
+            "query.rerank",
+            model=reranker.model_name,
+            hit_count=len(hits),
+            chunk_ids=[hit.chunk.chunk_id for hit in hits],
+            scores=[round(hit.score, 4) for hit in hits],
+        )
     retrieve_ms = (time.perf_counter() - retrieve_started) * 1000
     log.info(
         "query.retrieve",
