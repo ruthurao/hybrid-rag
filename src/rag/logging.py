@@ -5,6 +5,16 @@ import sys
 import structlog
 
 
+class _CurrentStderr:
+    """Always the process stderr, even after pytest replaces it."""
+
+    def write(self, message: str) -> int:
+        return sys.stderr.write(message)
+
+    def flush(self) -> None:
+        sys.stderr.flush()
+
+
 def configure_logging() -> None:
     structlog.configure(
         processors=[
@@ -14,8 +24,8 @@ def configure_logging() -> None:
             structlog.processors.JSONRenderer(),
         ],
         wrapper_class=structlog.BoundLogger,
-        logger_factory=structlog.PrintLoggerFactory(file=sys.stderr),
-        cache_logger_on_first_use=True,
+        logger_factory=structlog.PrintLoggerFactory(file=_CurrentStderr()),
+        cache_logger_on_first_use=False,
     )
 
 

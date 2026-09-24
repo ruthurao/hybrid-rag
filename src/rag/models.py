@@ -83,3 +83,26 @@ class Hit:
     chunk: Chunk
     score: float
     source: str = "vector"
+
+
+@dataclass
+class QueryTrace:
+    request_id: str
+    ingest_run_id: str
+    embedding_model: str
+    pipeline_id: str
+    scope: str
+    cache_hit: bool
+    filter: dict
+    k: int
+    chunk_ids: list[str]
+    scores: list[float]
+    sources: list[str]
+    latencies_ms: dict[str, float]
+
+
+@dataclass
+class Answer:
+    text: str
+    citations: list[dict]
+    query_trace: QueryTrace

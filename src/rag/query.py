@@ -1,0 +1,149 @@
+from __future__ import annotations
+
+import time
+from uuid import uuid4
+
+from src.rag.adapters.cache import InMemoryAnswerCache
+from src.rag.compare import detect_comparison_intent, mixed_versions, retrieve_both_versions
+from src.rag.config import Settings, default_settings
+from src.rag.generate import generate
+from src.rag.logging import get_logger
+from src.rag.models import Answer, QueryTrace
+from src.rag.ports.cache import AnswerCache
+from src.rag.ports.embedder import EmbeddingAdapter
+from src.rag.ports.store import VectorStoreAdapter
+
+SCOPE_LIVE = "live"
+SCOPE_DIAGNOSIS = "diagnosis"
+SCOPE_COMPARE = "compare"
+
+
+def cache_key(query: str, scope: str, ingest_run_id: str, pipeline_id: str) -> str:
+    return f"{pipeline_id}|{scope}|{ingest_run_id}|{_normalize(query)}"
+
+
+def retrieve_filter(scope: str, settings: Settings) -> dict:
+    rank = {"authority_rank": {"$gte": settings.live_authority_rank}}
+    if scope in (SCOPE_DIAGNOSIS, SCOPE_COMPARE):
+        return rank
+    return {"$and": [{"status": {"$eq": settings.live_status}}, rank]}
+
+
+def ask(
+    query: str,
+    embedder: EmbeddingAdapter,
+    store: VectorStoreAdapter,
+    ingest_run_id: str,
+    cache: AnswerCache | None = None,
+    settings: Settings | None = None,
+    scope: str = SCOPE_LIVE,
+    request_id: str | None = None,
+) -> Answer:
+    """Cache, then vector retrieve, then extractive generate.
+
+    A hit returns the stored answer and citations. A miss never writes an
+    empty answer, so a later ingest can still fill the gap.
+    """
+    settings = settings or default_settings()
+    cache = cache or InMemoryAnswerCache()
+    request_id = request_id or uuid4().hex
+    started = time.perf_counter()
+    if detect_comparison_intent(query, settings):
+        scope = SCOPE_COMPARE
+    where = retrieve_filter(scope, settings)
+    key = cache_key(query, scope, ingest_run_id, settings.pipeline_id)
+    log = get_logger(request_id=request_id, ingest_run_id=ingest_run_id)
+    log.info("query.start", scope=scope, pipeline_id=settings.pipeline_id)
+
+    cached = cache.get(key)
+    if cached is not None:
+        prior = cached.query_trace
+        trace = QueryTrace(
+            request_id=request_id,
+            ingest_run_id=ingest_run_id,
+            embedding_model=embedder.model_name,
+            pipeline_id=settings.pipeline_id,
+            scope=scope,
+            cache_hit=True,
+            filter=where,
+            k=settings.vector_top_k,
+            chunk_ids=list(prior.chunk_ids),
+            scores=list(prior.scores),
+            sources=list(prior.sources),
+            latencies_ms={
+                "retrieve": 0.0,
+                "generate": 0.0,
+                "total": round((time.perf_counter() - started) * 1000, 3),
+            },
+        )
+        log.info("query.done", cache_hit=True, citation_count=len(cached.citations))
+        return Answer(text=cached.text, citations=cached.citations, query_trace=trace)
+
+    retrieve_started = time.perf_counter()
+    vector = embedder.embed([query])[0]
+    if scope == SCOPE_COMPARE:
+        hits = retrieve_both_versions(vector, store, settings)
+    else:
+        hits = store.query(vector, k=settings.vector_top_k, where=where)
+        if scope == SCOPE_LIVE and mixed_versions(hits):
+            hits = [
+                hit
+                for hit in hits
+                if hit.chunk.metadata.get("status") == settings.live_status
+            ]
+    retrieve_ms = (time.perf_counter() - retrieve_started) * 1000
+    log.info(
+        "query.retrieve",
+        hit_count=len(hits),
+        chunk_ids=[hit.chunk.chunk_id for hit in hits],
+        scores=[round(hit.score, 4) for hit in hits],
+    )
+
+    generate_started = time.perf_counter()
+    text, citations = generate(hits, compare=scope == SCOPE_COMPARE)
+    generate_ms = (time.perf_counter() - generate_started) * 1000
+    log.info("query.generate", citation_count=len(citations), empty=not hits)
+
+    trace = _trace(
+        request_id=request_id,
+        ingest_run_id=ingest_run_id,
+        embedding_model=embedder.model_name,
+        settings=settings,
+        scope=scope,
+        cache_hit=False,
+        where=where,
+        hits=hits,
+        retrieve_ms=retrieve_ms,
+        generate_ms=generate_ms,
+        started=started,
+    )
+    answer = Answer(text=text, citations=citations, query_trace=trace)
+    if hits:
+        cache.set(key, answer)
+    log.info("query.done", cache_hit=False, citation_count=len(citations))
+    return answer
+
+
+def _normalize(query: str) -> str:
+    return " ".join(query.lower().split())
+
+
+def _trace(*, request_id, ingest_run_id, embedding_model, settings, scope, cache_hit, where, hits, retrieve_ms, generate_ms, started) -> QueryTrace:
+    return QueryTrace(
+        request_id=request_id,
+        ingest_run_id=ingest_run_id,
+        embedding_model=embedding_model,
+        pipeline_id=settings.pipeline_id,
+        scope=scope,
+        cache_hit=cache_hit,
+        filter=where,
+        k=settings.vector_top_k,
+        chunk_ids=[hit.chunk.chunk_id for hit in hits],
+        scores=[hit.score for hit in hits],
+        sources=[hit.source for hit in hits],
+        latencies_ms={
+            "retrieve": round(retrieve_ms, 3),
+            "generate": round(generate_ms, 3),
+            "total": round((time.perf_counter() - started) * 1000, 3),
+        },
+    )

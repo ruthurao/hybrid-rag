@@ -21,6 +21,24 @@ class Settings:
     rerank_top_n: int = 4
     live_status: str = "current"
     live_authority_rank: int = 2
+    # Bump when the miss path changes (hybrid, rerank, a new generator)
+    # so a Phase 6 answer cannot be served as a Phase 7 hit.
+    pipeline_id: str = "vector-v1"
+    compare_k_per_version: int = 5
+    # Phrases that mean "retrieve every version", not "current only".
+    # "how does" is omitted: it matches ordinary how-to questions.
+    comparison_signals: tuple[str, ...] = (
+        "difference between",
+        "compare",
+        "compared to",
+        " vs ",
+        "versus",
+        "changed from",
+        "what changed",
+        "old vs new",
+        "old and new",
+        "previous vs",
+    )
     ocr_enabled: bool = True
     ocr_min_confidence: float = 0.5
     # A page with less text than this has no usable text layer, and an image

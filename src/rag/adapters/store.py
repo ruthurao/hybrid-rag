@@ -6,10 +6,29 @@ from typing import Sequence
 from src.rag.models import Chunk, Hit
 
 
+def _equal(left, right) -> bool:
+    return left == right or str(left) == str(right)
+
+
+def _field_matches(value, cond) -> bool:
+    if isinstance(cond, dict):
+        if "$eq" in cond:
+            return _equal(value, cond["$eq"])
+        if "$gte" in cond:
+            try:
+                return value is not None and value >= cond["$gte"]
+            except TypeError:
+                return False
+        return False
+    return _equal(value, cond)
+
+
 def _matches(metadata: dict, where: dict | None) -> bool:
     if not where:
         return True
-    return all(str(metadata.get(key)) == str(value) for key, value in where.items())
+    if "$and" in where:
+        return all(_matches(metadata, clause) for clause in where["$and"])
+    return all(_field_matches(metadata.get(key), cond) for key, cond in where.items())
 
 
 def _cosine(a: Sequence[float], b: Sequence[float]) -> float:
