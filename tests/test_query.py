@@ -70,7 +70,7 @@ def test_every_answer_has_a_trace(live_store):
     assert trace.request_id == "req-1"
     assert trace.ingest_run_id == "test-run"
     assert trace.cache_hit is False
-    assert trace.pipeline_id == "vector-v1"
+    assert trace.pipeline_id == "hybrid-v1"
     assert trace.chunk_ids
     assert "retrieve" in trace.latencies_ms
 

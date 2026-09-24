@@ -7,6 +7,7 @@ from src.rag.adapters.cache import InMemoryAnswerCache
 from src.rag.compare import detect_comparison_intent, mixed_versions, retrieve_both_versions
 from src.rag.config import Settings, default_settings
 from src.rag.generate import generate
+from src.rag.hybrid import hybrid_retrieve
 from src.rag.logging import get_logger
 from src.rag.models import Answer, QueryTrace
 from src.rag.ports.cache import AnswerCache
@@ -39,7 +40,7 @@ def ask(
     scope: str = SCOPE_LIVE,
     request_id: str | None = None,
 ) -> Answer:
-    """Cache, then vector retrieve, then extractive generate.
+    """Cache, then hybrid retrieve (or per-version compare), then generate.
 
     A hit returns the stored answer and citations. A miss never writes an
     empty answer, so a later ingest can still fill the gap.
@@ -84,7 +85,15 @@ def ask(
     if scope == SCOPE_COMPARE:
         hits = retrieve_both_versions(vector, store, settings)
     else:
-        hits = store.query(vector, k=settings.vector_top_k, where=where)
+        vector_hits, keyword_hits, hits = hybrid_retrieve(
+            query, vector, store, where, settings
+        )
+        log.info(
+            "query.hybrid",
+            vector_ids=[hit.chunk.chunk_id for hit in vector_hits],
+            keyword_ids=[hit.chunk.chunk_id for hit in keyword_hits],
+            fused_ids=[hit.chunk.chunk_id for hit in hits],
+        )
         if scope == SCOPE_LIVE and mixed_versions(hits):
             hits = [
                 hit
