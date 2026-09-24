@@ -11,8 +11,6 @@ class Settings:
     collection_name: str = "policy_chunks"
     embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
     embedding_dim: int = 384
-    max_section_chars: int = 4000
-    overlap_chars: int = 200
     vector_top_k: int = 10
     keyword_top_k: int = 10
     rrf_k: int = 60
@@ -57,6 +55,11 @@ class AnnotationPolicy:
         "non-binding",
     )
     faq_markers: tuple[str, ...] = ("Q:", "A:")
+    # A grid row carries cells, not a sentence: several fields and none of the
+    # punctuation prose runs on. Wrapped prose lines otherwise read as rows.
+    table_row: str = r"^\S+(?:[ \t]+\S+){2,}$"
+    table_row_punctuation: str = r"[.,;]"
+    min_table_rows: int = 3
     pii_patterns: tuple[tuple[str, str], ...] = (
         ("email", r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"),
         ("employee_id", r"\bEE-\d+\b"),

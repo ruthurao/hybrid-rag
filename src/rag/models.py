@@ -7,6 +7,15 @@ from typing import Any
 UNASSIGNED_AUTHORITY = "untrusted"
 UNASSIGNED_RANK = 0
 
+# Shape of a block's content. UNTYPED means nobody has looked yet, which is
+# not the same answer as PROSE and must not be spelled the same way.
+UNTYPED = "untyped"
+PROSE = "prose"
+TABLE = "table"
+FAQ = "faq"
+IMAGE_TEXT = "image_text"
+ATOMIC_TYPES = (TABLE, FAQ)
+
 
 @dataclass
 class Block:
@@ -21,7 +30,7 @@ class Block:
     text: str
     start: int
     end: int
-    content_type: str = "prose"
+    content_type: str = UNTYPED
     authority: str = UNASSIGNED_AUTHORITY
     authority_rank: int = UNASSIGNED_RANK
     authority_reason: str = "unassigned"

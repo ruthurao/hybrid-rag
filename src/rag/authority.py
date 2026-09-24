@@ -5,8 +5,8 @@ from collections import Counter
 from typing import Iterable
 
 from src.rag.config import AnnotationPolicy, default_policy
-from src.rag.detectors import detect_pii
-from src.rag.models import Block
+from src.rag.detectors import classify_content, detect_pii
+from src.rag.models import FAQ, UNTYPED, Block
 
 NORMATIVE = "normative"
 ADVISORY = "advisory"
@@ -25,7 +25,8 @@ def annotate_blocks(
     for block in blocks:
         block.pii_kinds = detect_pii(block.text, policy)
         block.contains_pii = bool(block.pii_kinds)
-        block.content_type = _content_type(block, policy)
+        if block.content_type == UNTYPED:
+            block.content_type = classify_content(block.text, policy)
         level, reason = _authority(block, record_id, policy)
         block.authority = level
         block.authority_rank = RANK[level]
@@ -44,7 +45,7 @@ def _authority(block: Block, record_id: str, policy: AnnotationPolicy) -> tuple[
         return UNTRUSTED, "outside_heading_hierarchy"
     if _self_declared_non_binding(block.text, policy):
         return ADVISORY, "self_declared_non_binding"
-    if block.content_type == "faq":
+    if block.content_type == FAQ:
         return ADVISORY, "faq_shape"
     if re.match(policy.section_id, block.section):
         return NORMATIVE, "numbered_section"
@@ -54,13 +55,6 @@ def _authority(block: Block, record_id: str, policy: AnnotationPolicy) -> tuple[
 def _self_declared_non_binding(text: str, policy: AnnotationPolicy) -> bool:
     lowered = text.lower()
     return any(phrase in lowered for phrase in policy.non_binding_phrases)
-
-
-def _content_type(block: Block, policy: AnnotationPolicy) -> str:
-    lines = [line.strip() for line in block.text.splitlines()]
-    if sum(1 for line in lines if line.startswith(policy.faq_markers)) >= 2:
-        return "faq"
-    return "prose"
 
 
 def authority_counts(blocks: Iterable[Block]) -> dict[str, int]:
