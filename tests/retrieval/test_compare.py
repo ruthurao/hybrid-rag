@@ -5,10 +5,10 @@ import pytest
 from src.rag.adapters.cache import InMemoryAnswerCache
 from src.rag.adapters.embedder import LexicalEmbeddingAdapter
 from src.rag.adapters.store import InMemoryVectorStore
-from src.rag.compare import detect_comparison_intent, mixed_versions
-from src.rag.index import persist_chunks
+from src.rag.retrieval.compare import detect_comparison_intent, mixed_versions
+from src.rag.ingestion.index import persist_chunks
 from src.rag.models import Chunk, Hit
-from src.rag.query import SCOPE_COMPARE, SCOPE_LIVE, ask
+from src.rag.retrieval.query import SCOPE_COMPARE, SCOPE_LIVE, ask
 
 
 COMPARE = "What changed in the invoice approval threshold?"

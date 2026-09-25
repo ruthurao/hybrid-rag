@@ -9,9 +9,9 @@ sys.path.insert(0, str(ROOT))
 from src.rag.adapters.embedder import MiniLMEmbeddingAdapter  # noqa: E402
 from src.rag.adapters.store import ChromaVectorStore  # noqa: E402
 from src.rag.config import default_settings  # noqa: E402
-from src.rag.hybrid import hybrid_retrieve  # noqa: E402
+from src.rag.retrieval.hybrid import hybrid_retrieve  # noqa: E402
 from src.rag.logging import configure_logging  # noqa: E402
-from src.rag.query import SCOPE_LIVE, retrieve_filter  # noqa: E402
+from src.rag.retrieval.query import SCOPE_LIVE, retrieve_filter  # noqa: E402
 
 
 QUERY = "What is account code 6100 used for at travel close?"

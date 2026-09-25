@@ -1,6 +1,6 @@
 from src.rag.adapters.embedder import LexicalEmbeddingAdapter
 from src.rag.adapters.store import InMemoryVectorStore
-from src.rag.minimal_loop import QUERY, SENTENCE_A, SENTENCE_B, run_minimal_loop
+from src.rag.retrieval.minimal_loop import QUERY, SENTENCE_A, SENTENCE_B, run_minimal_loop
 
 
 def test_closer_sentence_wins():

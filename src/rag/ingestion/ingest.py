@@ -6,8 +6,8 @@ from uuid import uuid4
 
 from src.rag.adapters.ocr import RapidOcrAdapter
 from src.rag.adapters.parser import PdfParser
-from src.rag.authority import authority_counts
-from src.rag.chunking import HeadingChunker
+from src.rag.ingestion.authority import authority_counts
+from src.rag.ingestion.chunking import HeadingChunker
 from src.rag.config import Settings, default_settings
 from src.rag.logging import get_logger
 from src.rag.models import Chunk, Record

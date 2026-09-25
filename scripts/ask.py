@@ -13,8 +13,8 @@ from src.rag.adapters.llm import OllamaGenerator  # noqa: E402
 from src.rag.adapters.store import ChromaVectorStore  # noqa: E402
 from src.rag.config import default_settings  # noqa: E402
 from src.rag.logging import configure_logging  # noqa: E402
-from src.rag.query import SCOPE_COMPARE, SCOPE_DIAGNOSIS, SCOPE_LIVE, ask  # noqa: E402
-from src.rag.rerank import CrossEncoderReranker  # noqa: E402
+from src.rag.retrieval.query import SCOPE_COMPARE, SCOPE_DIAGNOSIS, SCOPE_LIVE, ask  # noqa: E402
+from src.rag.retrieval.rerank import CrossEncoderReranker  # noqa: E402
 
 LLM_PIPELINE_ID = "ollama-v1"
 

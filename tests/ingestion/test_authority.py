@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from src.rag.adapters.parser import segment_blocks
-from src.rag.authority import (
+from src.rag.ingestion.authority import (
     ADVISORY,
     NORMATIVE,
     RANK,
@@ -11,7 +11,7 @@ from src.rag.authority import (
     promptable,
 )
 from src.rag.config import AnnotationPolicy
-from src.rag.detectors import detect_pii
+from src.rag.ingestion.detectors import detect_pii
 from src.rag.models import Block
 
 SYNTHETIC = """\

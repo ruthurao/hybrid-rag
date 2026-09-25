@@ -5,10 +5,10 @@ import pytest
 from src.rag.adapters.cache import InMemoryAnswerCache
 from src.rag.adapters.embedder import LexicalEmbeddingAdapter
 from src.rag.adapters.store import InMemoryVectorStore
-from src.rag.generate import NO_HIT
-from src.rag.index import persist_chunks
+from src.rag.generation.generate import NO_HIT
+from src.rag.ingestion.index import persist_chunks
 from src.rag.logging import configure_logging
-from src.rag.query import SCOPE_COMPARE, SCOPE_DIAGNOSIS, SCOPE_LIVE, ask, cache_key
+from src.rag.retrieval.query import SCOPE_COMPARE, SCOPE_DIAGNOSIS, SCOPE_LIVE, ask, cache_key
 
 
 APPROVAL = "What is the invoice approval threshold?"

@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from src.rag.config import default_settings  # noqa: E402
-from src.rag.index import build_index  # noqa: E402
+from src.rag.ingestion.index import build_index  # noqa: E402
 from src.rag.logging import configure_logging  # noqa: E402
 
 

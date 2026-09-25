@@ -6,7 +6,7 @@ from typing import Sequence
 
 from pypdf import PdfReader
 
-from src.rag.authority import annotate_blocks
+from src.rag.ingestion.authority import annotate_blocks
 from src.rag.config import AnnotationPolicy, default_policy
 from src.rag.models import IMAGE_TEXT, INSET, PAGE, Block, ImageAsset, Record
 from src.rag.ports.ocr import OcrAdapter

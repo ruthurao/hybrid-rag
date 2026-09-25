@@ -6,11 +6,11 @@ from src.rag.adapters.cache import InMemoryAnswerCache
 from src.rag.adapters.embedder import LexicalEmbeddingAdapter
 from src.rag.adapters.store import InMemoryVectorStore
 from src.rag.config import default_settings
-from src.rag.index import persist_chunks
+from src.rag.ingestion.index import persist_chunks
 from src.rag.logging import configure_logging
 from src.rag.models import Chunk, Hit
-from src.rag.query import ask
-from src.rag.rerank import IdentityReranker
+from src.rag.retrieval.query import ask
+from src.rag.retrieval.rerank import IdentityReranker
 
 TABLE = "mec-us-0001-v1.0#MEC-5.1"
 TRAVEL = "mec-us-0001-v1.0#MEC-8.2"

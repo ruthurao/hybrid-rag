@@ -5,11 +5,11 @@ import pytest
 from src.rag.adapters.cache import InMemoryAnswerCache
 from src.rag.adapters.embedder import LexicalEmbeddingAdapter
 from src.rag.adapters.store import InMemoryVectorStore
-from src.rag.hybrid import hybrid_retrieve, keyword_retrieve, rrf_fuse
-from src.rag.index import persist_chunks
+from src.rag.retrieval.hybrid import hybrid_retrieve, keyword_retrieve, rrf_fuse
+from src.rag.ingestion.index import persist_chunks
 from src.rag.logging import configure_logging
 from src.rag.models import Chunk, Hit
-from src.rag.query import SCOPE_LIVE, ask, retrieve_filter
+from src.rag.retrieval.query import SCOPE_LIVE, ask, retrieve_filter
 from src.rag.config import default_settings
 
 TABLE = "mec-us-0001-v1.0#MEC-5.1"

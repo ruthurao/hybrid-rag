@@ -4,10 +4,10 @@ import time
 from uuid import uuid4
 
 from src.rag.adapters.cache import InMemoryAnswerCache
-from src.rag.compare import detect_comparison_intent, mixed_versions, retrieve_both_versions
+from src.rag.retrieval.compare import detect_comparison_intent, mixed_versions, retrieve_both_versions
 from src.rag.config import Settings, default_settings
-from src.rag.generate import ExtractiveGenerator
-from src.rag.hybrid import hybrid_retrieve
+from src.rag.generation.generate import ExtractiveGenerator
+from src.rag.retrieval.hybrid import hybrid_retrieve
 from src.rag.logging import get_logger
 from src.rag.models import Answer, QueryTrace
 from src.rag.ports.cache import AnswerCache
@@ -15,7 +15,7 @@ from src.rag.ports.embedder import EmbeddingAdapter
 from src.rag.ports.generator import Generator
 from src.rag.ports.rerank import Reranker
 from src.rag.ports.store import VectorStoreAdapter
-from src.rag.rerank import IdentityReranker
+from src.rag.retrieval.rerank import IdentityReranker
 
 SCOPE_LIVE = "live"
 SCOPE_DIAGNOSIS = "diagnosis"

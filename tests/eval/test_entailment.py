@@ -1,4 +1,4 @@
-from src.rag.entailment import (
+from src.rag.eval.entailment import (
     entailment_probability,
     passes_tau,
     softmax,

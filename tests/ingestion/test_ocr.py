@@ -7,7 +7,7 @@ import pytest
 
 from src.rag.adapters.ocr import RapidOcrAdapter
 from src.rag.adapters.parser import PdfParser
-from src.rag.authority import NORMATIVE, UNTRUSTED
+from src.rag.ingestion.authority import NORMATIVE, UNTRUSTED
 from src.rag.config import default_policy
 from src.rag.models import INSET, PAGE, ImageAsset
 
@@ -28,7 +28,7 @@ class _StubOcr:
     def read(self, path):
         return [self.asset]
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 CLOSE_PDF = ROOT / "corpus" / "mec-us-0001-v1.0.pdf"
 APPROVAL_PDF = ROOT / "corpus" / "ap-us-0001-v1.0.pdf"
 
@@ -128,7 +128,7 @@ def test_a_scanned_page_yields_normative_sections(scanned_pdf):
 def test_a_scanned_document_is_indexed_not_dropped(scanned_pdf):
     """The failure this guards against is silent: an image-only document that
     parses, excludes everything and reports nothing worth storing."""
-    from src.rag.chunking import HeadingChunker
+    from src.rag.ingestion.chunking import HeadingChunker
 
     record = PdfParser(ocr=RapidOcrAdapter()).parse(scanned_pdf)
     chunks = HeadingChunker().chunk(record, "run", "model")

@@ -5,7 +5,7 @@ from collections import Counter
 from typing import Iterable
 
 from src.rag.config import AnnotationPolicy, default_policy
-from src.rag.detectors import classify_content, detect_pii
+from src.rag.ingestion.detectors import classify_content, detect_pii
 from src.rag.models import FAQ, UNTYPED, Block
 
 NORMATIVE = "normative"

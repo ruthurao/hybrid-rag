@@ -8,10 +8,10 @@ from src.rag.adapters.cache import InMemoryAnswerCache
 from src.rag.adapters.embedder import LexicalEmbeddingAdapter
 from src.rag.adapters.llm import OllamaGenerator
 from src.rag.adapters.store import InMemoryVectorStore
-from src.rag.generate import NO_COMPARE, NO_HIT, ExtractiveGenerator, generate
+from src.rag.generation.generate import NO_COMPARE, NO_HIT, ExtractiveGenerator, generate
 from src.rag.logging import configure_logging
 from src.rag.models import Chunk, Hit
-from src.rag.query import ask
+from src.rag.retrieval.query import ask
 
 QUERY = "What is the invoice approval threshold?"
 META = {

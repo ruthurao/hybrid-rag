@@ -5,8 +5,8 @@ import pytest
 from src.rag.adapters.cache import InMemoryAnswerCache
 from src.rag.adapters.embedder import LexicalEmbeddingAdapter
 from src.rag.adapters.store import InMemoryVectorStore
-from src.rag.index import persist_chunks
-from src.rag.query import SCOPE_DIAGNOSIS, SCOPE_LIVE, ask
+from src.rag.ingestion.index import persist_chunks
+from src.rag.retrieval.query import SCOPE_DIAGNOSIS, SCOPE_LIVE, ask
 
 
 @pytest.fixture(scope="module")

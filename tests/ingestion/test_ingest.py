@@ -5,11 +5,11 @@ from pathlib import Path
 import pytest
 
 from src.rag.adapters.parser import PdfParser
-from src.rag.authority import ADVISORY, NORMATIVE, UNTRUSTED
-from src.rag.ingest import ingest_pdfs
+from src.rag.ingestion.authority import ADVISORY, NORMATIVE, UNTRUSTED
+from src.rag.ingestion.ingest import ingest_pdfs
 from src.rag.logging import configure_logging
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 CORPUS = ROOT / "corpus"
 
 

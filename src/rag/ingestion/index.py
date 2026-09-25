@@ -6,7 +6,7 @@ from typing import Sequence
 from src.rag.adapters.embedder import MiniLMEmbeddingAdapter
 from src.rag.adapters.store import ChromaVectorStore
 from src.rag.config import Settings, default_settings
-from src.rag.ingest import ingest_pdfs
+from src.rag.ingestion.ingest import ingest_pdfs
 from src.rag.logging import get_logger
 from src.rag.models import Chunk, Record
 from src.rag.ports.embedder import EmbeddingAdapter

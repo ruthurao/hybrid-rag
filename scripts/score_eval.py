@@ -19,13 +19,13 @@ from src.rag.adapters.cache import InMemoryAnswerCache  # noqa: E402
 from src.rag.adapters.embedder import MiniLMEmbeddingAdapter  # noqa: E402
 from src.rag.adapters.store import ChromaVectorStore  # noqa: E402
 from src.rag.config import default_settings  # noqa: E402
-from src.rag.entailment import EntailmentScorer, supporting_sentence, tau_gate  # noqa: E402
-from src.rag.generate import ExtractiveGenerator  # noqa: E402
+from src.rag.eval.entailment import EntailmentScorer, supporting_sentence, tau_gate  # noqa: E402
+from src.rag.generation.generate import ExtractiveGenerator  # noqa: E402
 from src.rag.logging import configure_logging  # noqa: E402
 from src.rag.models import Chunk  # noqa: E402
-from src.rag.query import ask  # noqa: E402
-from src.rag.rerank import CrossEncoderReranker  # noqa: E402
-from tests.eval_cases import CASES, RUBRIC_CASES, STRESS_CASES  # noqa: E402
+from src.rag.retrieval.query import ask  # noqa: E402
+from src.rag.retrieval.rerank import CrossEncoderReranker  # noqa: E402
+from src.rag.eval.cases import CASES, RUBRIC_CASES, STRESS_CASES  # noqa: E402
 
 
 @dataclass(frozen=True)

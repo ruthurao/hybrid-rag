@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from src.rag.ingest import ingest_pdfs
+from src.rag.ingestion.ingest import ingest_pdfs
 
 CORPUS = Path(__file__).resolve().parents[1] / "corpus"
 

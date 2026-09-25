@@ -1,13 +1,13 @@
 from __future__ import annotations
 
-from src.rag.authority import ADVISORY, NORMATIVE, RANK, UNTRUSTED, annotate_blocks
-from src.rag.chunking import (
+from src.rag.ingestion.authority import ADVISORY, NORMATIVE, RANK, UNTRUSTED, annotate_blocks
+from src.rag.ingestion.chunking import (
     LINEAGE_FIELDS,
     HeadingChunker,
     indexable,
     split_on_sentences,
 )
-from src.rag.detectors import classify_content
+from src.rag.ingestion.detectors import classify_content
 from src.rag.models import PROSE, TABLE, Block, Record
 
 

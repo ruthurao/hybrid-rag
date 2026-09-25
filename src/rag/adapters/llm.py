@@ -5,7 +5,7 @@ import urllib.error
 import urllib.request
 from collections.abc import Callable
 
-from src.rag.generate import NO_COMPARE, NO_HIT, _citations
+from src.rag.generation.generate import NO_COMPARE, NO_HIT, _citations
 from src.rag.models import Hit
 
 Messages = list[dict[str, str]]

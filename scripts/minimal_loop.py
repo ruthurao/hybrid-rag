@@ -8,7 +8,7 @@ sys.path.insert(0, str(ROOT))
 
 from src.rag.adapters.store import ChromaVectorStore  # noqa: E402
 from src.rag.logging import configure_logging, get_logger  # noqa: E402
-from src.rag.minimal_loop import QUERY, SENTENCE_A, SENTENCE_B, run_minimal_loop  # noqa: E402
+from src.rag.retrieval.minimal_loop import QUERY, SENTENCE_A, SENTENCE_B, run_minimal_loop  # noqa: E402
 
 
 def main() -> None:

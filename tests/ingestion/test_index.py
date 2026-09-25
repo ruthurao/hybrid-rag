@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from src.rag.adapters.embedder import LexicalEmbeddingAdapter
 from src.rag.adapters.store import ChromaVectorStore, InMemoryVectorStore
-from src.rag.index import persist_chunks
+from src.rag.ingestion.index import persist_chunks
 from src.rag.logging import configure_logging
 
 
