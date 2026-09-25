@@ -6,12 +6,13 @@ from uuid import uuid4
 from src.rag.adapters.cache import InMemoryAnswerCache
 from src.rag.compare import detect_comparison_intent, mixed_versions, retrieve_both_versions
 from src.rag.config import Settings, default_settings
-from src.rag.generate import generate
+from src.rag.generate import ExtractiveGenerator
 from src.rag.hybrid import hybrid_retrieve
 from src.rag.logging import get_logger
 from src.rag.models import Answer, QueryTrace
 from src.rag.ports.cache import AnswerCache
 from src.rag.ports.embedder import EmbeddingAdapter
+from src.rag.ports.generator import Generator
 from src.rag.ports.rerank import Reranker
 from src.rag.ports.store import VectorStoreAdapter
 from src.rag.rerank import IdentityReranker
@@ -42,15 +43,18 @@ def ask(
     scope: str = SCOPE_LIVE,
     request_id: str | None = None,
     reranker: Reranker | None = None,
+    generator: Generator | None = None,
 ) -> Answer:
     """Cache, then hybrid retrieve (or per-version compare), then generate.
 
     A hit returns the stored answer and citations. A miss never writes an
-    empty answer, so a later ingest can still fill the gap.
+    empty answer, so a later ingest can still fill the gap. The default
+    generator pastes chunk text. A failed generator raises and is not cached.
     """
     settings = settings or default_settings()
     cache = cache or InMemoryAnswerCache()
     reranker = reranker or IdentityReranker()
+    generator = generator or ExtractiveGenerator()
     request_id = request_id or uuid4().hex
     started = time.perf_counter()
     if detect_comparison_intent(query, settings):
@@ -121,9 +125,14 @@ def ask(
     )
 
     generate_started = time.perf_counter()
-    text, citations = generate(hits, compare=scope == SCOPE_COMPARE)
+    text, citations = generator.generate(query, hits, compare=scope == SCOPE_COMPARE)
     generate_ms = (time.perf_counter() - generate_started) * 1000
-    log.info("query.generate", citation_count=len(citations), empty=not hits)
+    log.info(
+        "query.generate",
+        model=generator.model_name,
+        citation_count=len(citations),
+        empty=not hits,
+    )
 
     trace = _trace(
         request_id=request_id,
@@ -139,7 +148,7 @@ def ask(
         started=started,
     )
     answer = Answer(text=text, citations=citations, query_trace=trace)
-    if hits:
+    if hits and text.strip():
         cache.set(key, answer)
     log.info("query.done", cache_hit=False, citation_count=len(citations))
     return answer

@@ -8,6 +8,18 @@ NO_HIT = "No current policy answers this question."
 NO_COMPARE = "No versions of this policy were found."
 
 
+class ExtractiveGenerator:
+    """Pastes chunk text. The default so ask() never calls an API."""
+
+    model_name = "extractive"
+
+    def generate(
+        self, query: str, hits: list[Hit], *, compare: bool = False
+    ) -> tuple[str, list[dict]]:
+        del query
+        return generate(hits, compare=compare)
+
+
 def generate(hits: list[Hit], *, compare: bool = False) -> tuple[str, list[dict]]:
     """Build an extractive answer and its citations. No model call."""
     if not hits:
