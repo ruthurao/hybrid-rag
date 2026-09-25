@@ -45,6 +45,10 @@ class Settings:
     # shaped like the sheet on such a page is the page rather than an inset.
     ocr_page_text_threshold: int = 50
     ocr_page_aspect_tolerance: float = 0.15
+    # NLI model. Premise is retrieved policy text; hypothesis is an expected fact.
+    entailment_model: str = "cross-encoder/nli-deberta-v3-small"
+    # A fact passes only when P(entailment) is at least this tau.
+    entailment_tau: float = 0.5
 
 
 def default_settings(root: Path | None = None) -> Settings:
