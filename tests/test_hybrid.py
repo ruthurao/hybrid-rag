@@ -42,7 +42,11 @@ def test_keyword_retrieve_finds_6100_only_in_the_table(store):
     hits = keyword_retrieve(QUERY_6100, store.get_all(), k=10)
     with_code = [hit.chunk.chunk_id for hit in hits if "6100" in hit.chunk.text]
     assert with_code == [TABLE]
-    assert any(hit.chunk.chunk_id == TABLE for hit in hits)
+    assert hits[0].chunk.chunk_id == TABLE
+    travel_rank = next(
+        i for i, hit in enumerate(hits) if hit.chunk.chunk_id == TRAVEL
+    )
+    assert travel_rank > 0
 
 
 def test_lexical_vector_already_ranks_the_table_first(store):
@@ -100,4 +104,4 @@ def test_pipeline_id_is_hybrid(store):
         "test-run",
         cache=InMemoryAnswerCache(),
     )
-    assert answer.query_trace.pipeline_id == "rerank-v1"
+    assert answer.query_trace.pipeline_id == "rerank-v2"
