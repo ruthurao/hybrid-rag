@@ -2,7 +2,7 @@
 
 Internal Q&A for finance staff. Answers are grounded in **current** AP, expense, and month-end close policy, with citations. A superseded AP handbook stays in the index so diagnosis can find it; live answers must not use it.
 
-This repo’s `main` branch is the locked corpus only. Application code lives on feature branches. These docs live on `docs/living`.
+`main` is the submission tip: corpus, pipeline, tests, CI, and these docs. `docs/living` is the docs-only branch.
 
 ## Corpus
 
@@ -17,7 +17,7 @@ Index the four PDFs in [`corpus/`](corpus/). Do not also index the `.md` twins.
 
 See [docs/ingest.md](docs/ingest.md) for the ingest contract and [docs/prd.md](docs/prd.md) for the product spec.
 
-## Install (after Phase 1)
+## Install
 
 ```bash
 python3 -m venv .venv
@@ -25,19 +25,19 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Logger smoke (Phase 1):
+Logger smoke:
 
 ```bash
 python -c "from src.rag.logging import configure_logging, get_logger; configure_logging(); get_logger(ingest_run_id='smoke').info('ingest.start')"
 ```
 
-Quick loop (Phase 2) — screenshot the closer sentence winning:
+Quick loop — screenshot the closer sentence winning:
 
 ```bash
 python scripts/minimal_loop.py
 ```
 
-## Commands (filled as phases land)
+## Commands
 
 | Phase | Command | Notes |
 | --- | --- | --- |
