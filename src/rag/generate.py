@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from src.rag.models import Hit
 
-CITATION_FIELDS = ("doc_id", "version", "section", "record_id", "status")
+CITATION_FIELDS = ("doc_id", "version", "section", "record_id", "status", "authority")
 
 NO_HIT = "No current policy answers this question."
 NO_COMPARE = "No versions of this policy were found."
