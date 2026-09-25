@@ -72,6 +72,7 @@ def test_every_answer_has_a_trace(live_store):
     assert trace.cache_hit is False
     assert trace.pipeline_id == "rerank-v2"
     assert trace.chunk_ids
+    assert trace.vector_ids
     assert "retrieve" in trace.latencies_ms
 
 
@@ -86,6 +87,7 @@ def test_repeat_ask_is_a_cache_hit_and_skips_retrieve(live_store):
     assert second.citations == first.citations
     assert embedder.calls == 1
     assert second.query_trace.chunk_ids == first.query_trace.chunk_ids
+    assert second.query_trace.vector_ids == first.query_trace.vector_ids
 
 
 def test_diagnosis_ask_misses_the_live_cache(live_store):

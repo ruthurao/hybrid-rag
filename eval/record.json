@@ -1,0 +1,2252 @@
+{
+  "models": {
+    "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+    "reranker": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "generator": "extractive",
+    "entailment": "cross-encoder/nli-deberta-v3-small",
+    "tau": 0.5,
+    "ingest_run_id": "79cbb81920684b92b13eded1c327008a"
+  },
+  "rubric_pass": true,
+  "summary": {
+    "rubric": {
+      "cases": 8,
+      "failed": 0,
+      "vector_found": 8,
+      "vector_gold": 8,
+      "record_found": 8,
+      "record_gold": 8
+    },
+    "extra": {
+      "cases": 9,
+      "failed": 0,
+      "vector_found": 11,
+      "vector_gold": 11,
+      "record_found": 11,
+      "record_gold": 11
+    },
+    "stress": {
+      "cases": 26,
+      "failed": 2,
+      "vector_found": 26,
+      "vector_gold": 26,
+      "record_found": 26,
+      "record_gold": 26
+    }
+  },
+  "cases": [
+    {
+      "name": "live_approval_is_current_v2",
+      "group": "rubric",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "ap-us-0001-v2.0#AP-5.1",
+          "ap-us-0001-v2.0#AP-1.1",
+          "exp-us-0001-v1.0#EXP-4.3",
+          "ap-us-0001-v2.0#AP-3.1",
+          "ap-us-0001-v2.0#AP-7.1",
+          "ap-us-0001-v2.0#AP-8.1",
+          "exp-us-0001-v1.0#EXP-3.2",
+          "ap-us-0001-v2.0#AP-4.1",
+          "ap-us-0001-v2.0#AP-6.1",
+          "exp-us-0001-v1.0#EXP-6.1"
+        ],
+        "gold": [
+          "ap-us-0001-v2.0#AP-5.1"
+        ],
+        "found": [
+          "ap-us-0001-v2.0#AP-5.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "ap-us-0001-v2.0"
+        ],
+        "gold": [
+          "ap-us-0001-v2.0"
+        ],
+        "found": [
+          "ap-us-0001-v2.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9865
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "diagnosis_surfaces_replaced_v1",
+      "group": "rubric",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "ap-us-0001-v2.0#AP-5.1",
+          "ap-us-0001-v1.0#AP-5.1",
+          "ap-us-0001-v2.0#AP-7.1",
+          "ap-us-0001-v1.0#AP-7.1",
+          "ap-us-0001-v2.0#AP-1.1",
+          "exp-us-0001-v1.0#EXP-4.3",
+          "exp-us-0001-v1.0#EXP-3.2",
+          "ap-us-0001-v1.0#AP-1.1",
+          "ap-us-0001-v1.0#AP-3.1",
+          "ap-us-0001-v2.0#AP-3.1"
+        ],
+        "gold": [
+          "ap-us-0001-v1.0#AP-5.1"
+        ],
+        "found": [
+          "ap-us-0001-v1.0#AP-5.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "ap-us-0001-v1.0",
+          "ap-us-0001-v2.0"
+        ],
+        "gold": [
+          "ap-us-0001-v1.0"
+        ],
+        "found": [
+          "ap-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9855
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "live_6100_is_the_coding_table",
+      "group": "rubric",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "mec-us-0001-v1.0#MEC-8.2",
+          "mec-us-0001-v1.0#MEC-5.1",
+          "mec-us-0001-v1.0#MEC-2.1",
+          "mec-us-0001-v1.0#MEC-1.1",
+          "mec-us-0001-v1.0#MEC-8.3",
+          "mec-us-0001-v1.0#MEC-4.1",
+          "exp-us-0001-v1.0#EXP-8.1",
+          "mec-us-0001-v1.0#MEC-3.2",
+          "ap-us-0001-v2.0#AP-1.1",
+          "mec-us-0001-v1.0#MEC-8.1"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0#MEC-5.1"
+        ],
+        "found": [
+          "mec-us-0001-v1.0#MEC-5.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "mec-us-0001-v1.0"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0"
+        ],
+        "found": [
+          "mec-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9957
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "live_lock_timing",
+      "group": "rubric",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "mec-us-0001-v1.0#MEC-3.2",
+          "mec-us-0001-v1.0#MEC-6.1",
+          "mec-us-0001-v1.0#MEC-3.1",
+          "mec-us-0001-v1.0#MEC-2.1",
+          "mec-us-0001-v1.0#MEC-8.1",
+          "mec-us-0001-v1.0#MEC-7.1",
+          "mec-us-0001-v1.0#MEC-8.3",
+          "mec-us-0001-v1.0#MEC-1.1",
+          "mec-us-0001-v1.0#MEC-5.2",
+          "mec-us-0001-v1.0#MEC-8.2"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0#MEC-3.2"
+        ],
+        "found": [
+          "mec-us-0001-v1.0#MEC-3.2"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "mec-us-0001-v1.0"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0"
+        ],
+        "found": [
+          "mec-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9893
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "live_posting_job_ids_are_not_pii",
+      "group": "rubric",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "mec-us-0001-v1.0#MEC-4.1",
+          "mec-us-0001-v1.0#MEC-4.2",
+          "mec-us-0001-v1.0#MEC-2.1",
+          "mec-us-0001-v1.0#MEC-8.1",
+          "mec-us-0001-v1.0#MEC-3.1",
+          "ap-us-0001-v2.0#AP-8.1",
+          "mec-us-0001-v1.0#MEC-8.2",
+          "mec-us-0001-v1.0#MEC-5.1",
+          "mec-us-0001-v1.0#MEC-3.2",
+          "mec-us-0001-v1.0#MEC-6.1"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0#MEC-4.1"
+        ],
+        "found": [
+          "mec-us-0001-v1.0#MEC-4.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "mec-us-0001-v1.0"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0"
+        ],
+        "found": [
+          "mec-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9668
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "live_expense_faq_is_cited",
+      "group": "rubric",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "exp-us-0001-v1.0#EXP-8.1",
+          "exp-us-0001-v1.0#EXP-4.2",
+          "mec-us-0001-v1.0#MEC-8.2",
+          "exp-us-0001-v1.0#EXP-4.3",
+          "exp-us-0001-v1.0#EXP-4.1",
+          "exp-us-0001-v1.0#EXP-6.1",
+          "exp-us-0001-v1.0#EXP-3.2",
+          "exp-us-0001-v1.0#EXP-7.1",
+          "exp-us-0001-v1.0#EXP-2.1",
+          "exp-us-0001-v1.0#EXP-3.1"
+        ],
+        "gold": [
+          "exp-us-0001-v1.0#EXP-8.1"
+        ],
+        "found": [
+          "exp-us-0001-v1.0#EXP-8.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "exp-us-0001-v1.0",
+          "mec-us-0001-v1.0",
+          "ap-us-0001-v2.0"
+        ],
+        "gold": [
+          "exp-us-0001-v1.0"
+        ],
+        "found": [
+          "exp-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9901
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "live_payment_window_is_30_days",
+      "group": "rubric",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "ap-us-0001-v2.0#AP-6.1",
+          "ap-us-0001-v2.0#AP-3.1",
+          "ap-us-0001-v2.0#AP-3.2",
+          "ap-us-0001-v2.0#AP-2.1",
+          "ap-us-0001-v2.0#AP-5.1",
+          "exp-us-0001-v1.0#EXP-5.1",
+          "ap-us-0001-v2.0#AP-8.1",
+          "ap-us-0001-v2.0#AP-4.2",
+          "ap-us-0001-v2.0#AP-4.1",
+          "ap-us-0001-v2.0#AP-1.1"
+        ],
+        "gold": [
+          "ap-us-0001-v2.0#AP-6.1"
+        ],
+        "found": [
+          "ap-us-0001-v2.0#AP-6.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "ap-us-0001-v2.0"
+        ],
+        "gold": [
+          "ap-us-0001-v2.0"
+        ],
+        "found": [
+          "ap-us-0001-v2.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9955
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "live_meal_cap",
+      "group": "rubric",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "exp-us-0001-v1.0#EXP-4.1",
+          "exp-us-0001-v1.0#EXP-4.3",
+          "exp-us-0001-v1.0#EXP-4.2",
+          "exp-us-0001-v1.0#EXP-6.1",
+          "exp-us-0001-v1.0#EXP-2.1",
+          "exp-us-0001-v1.0#EXP-8.1",
+          "exp-us-0001-v1.0#EXP-7.1",
+          "exp-us-0001-v1.0#EXP-1.1",
+          "ap-us-0001-v2.0#AP-5.1",
+          "mec-us-0001-v1.0#MEC-1.1"
+        ],
+        "gold": [
+          "exp-us-0001-v1.0#EXP-4.1"
+        ],
+        "found": [
+          "exp-us-0001-v1.0#EXP-4.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "exp-us-0001-v1.0"
+        ],
+        "gold": [
+          "exp-us-0001-v1.0"
+        ],
+        "found": [
+          "exp-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9854
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "compare_cites_both_approval_rules",
+      "group": "extra",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "ap-us-0001-v1.0#AP-5.1",
+          "ap-us-0001-v1.0#AP-1.1",
+          "ap-us-0001-v1.0#AP-8.1",
+          "ap-us-0001-v1.0#AP-7.1",
+          "ap-us-0001-v1.0#AP-3.2",
+          "ap-us-0001-v2.0#AP-5.1",
+          "ap-us-0001-v2.0#AP-1.1",
+          "ap-us-0001-v2.0#AP-8.1",
+          "ap-us-0001-v2.0#AP-7.1",
+          "ap-us-0001-v2.0#AP-3.2"
+        ],
+        "gold": [
+          "ap-us-0001-v1.0#AP-5.1",
+          "ap-us-0001-v2.0#AP-5.1"
+        ],
+        "found": [
+          "ap-us-0001-v1.0#AP-5.1",
+          "ap-us-0001-v2.0#AP-5.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "ap-us-0001-v1.0",
+          "ap-us-0001-v2.0"
+        ],
+        "gold": [
+          "ap-us-0001-v1.0",
+          "ap-us-0001-v2.0"
+        ],
+        "found": [
+          "ap-us-0001-v1.0",
+          "ap-us-0001-v2.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 2,
+      "gold_chunks": 2,
+      "missing_chunks": [],
+      "facts_found": 2,
+      "facts": 2,
+      "missing_facts": [],
+      "entailment": [
+        0.9855,
+        0.9865
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "live_three_way_match",
+      "group": "extra",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "ap-us-0001-v2.0#AP-3.1",
+          "ap-us-0001-v2.0#AP-6.1",
+          "ap-us-0001-v2.0#AP-2.1",
+          "ap-us-0001-v2.0#AP-4.1",
+          "ap-us-0001-v2.0#AP-4.2",
+          "ap-us-0001-v2.0#AP-1.1",
+          "ap-us-0001-v2.0#AP-8.1",
+          "ap-us-0001-v2.0#AP-3.2",
+          "ap-us-0001-v2.0#AP-5.1",
+          "exp-us-0001-v1.0#EXP-3.2"
+        ],
+        "gold": [
+          "ap-us-0001-v2.0#AP-3.1"
+        ],
+        "found": [
+          "ap-us-0001-v2.0#AP-3.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "ap-us-0001-v2.0"
+        ],
+        "gold": [
+          "ap-us-0001-v2.0"
+        ],
+        "found": [
+          "ap-us-0001-v2.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9868
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "live_duplicate_payment_control",
+      "group": "extra",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "ap-us-0001-v2.0#AP-4.2",
+          "ap-us-0001-v2.0#AP-2.1",
+          "ap-us-0001-v2.0#AP-3.2",
+          "ap-us-0001-v2.0#AP-3.1",
+          "ap-us-0001-v2.0#AP-1.1",
+          "ap-us-0001-v2.0#AP-8.1",
+          "ap-us-0001-v2.0#AP-6.1",
+          "ap-us-0001-v2.0#AP-4.1",
+          "ap-us-0001-v2.0#AP-7.1",
+          "ap-us-0001-v2.0#AP-5.1"
+        ],
+        "gold": [
+          "ap-us-0001-v2.0#AP-4.2"
+        ],
+        "found": [
+          "ap-us-0001-v2.0#AP-4.2"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "ap-us-0001-v2.0"
+        ],
+        "gold": [
+          "ap-us-0001-v2.0"
+        ],
+        "found": [
+          "ap-us-0001-v2.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9759
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "compare_payment_window_both_versions",
+      "group": "extra",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "ap-us-0001-v1.0#AP-6.1",
+          "ap-us-0001-v1.0#AP-3.2",
+          "ap-us-0001-v1.0#AP-3.1",
+          "ap-us-0001-v1.0#AP-2.1",
+          "ap-us-0001-v1.0#AP-8.1",
+          "ap-us-0001-v2.0#AP-6.1",
+          "ap-us-0001-v2.0#AP-3.2",
+          "ap-us-0001-v2.0#AP-3.1",
+          "ap-us-0001-v2.0#AP-2.1",
+          "ap-us-0001-v2.0#AP-8.1"
+        ],
+        "gold": [
+          "ap-us-0001-v1.0#AP-6.1",
+          "ap-us-0001-v2.0#AP-6.1"
+        ],
+        "found": [
+          "ap-us-0001-v1.0#AP-6.1",
+          "ap-us-0001-v2.0#AP-6.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "ap-us-0001-v1.0",
+          "ap-us-0001-v2.0"
+        ],
+        "gold": [
+          "ap-us-0001-v1.0",
+          "ap-us-0001-v2.0"
+        ],
+        "found": [
+          "ap-us-0001-v1.0",
+          "ap-us-0001-v2.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 2,
+      "gold_chunks": 2,
+      "missing_chunks": [],
+      "facts_found": 2,
+      "facts": 2,
+      "missing_facts": [],
+      "entailment": [
+        0.9946,
+        0.9955
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "diagnosis_old_payment_window_is_45_days",
+      "group": "extra",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "ap-us-0001-v1.0#AP-6.1",
+          "ap-us-0001-v2.0#AP-6.1",
+          "ap-us-0001-v1.0#AP-7.1",
+          "ap-us-0001-v2.0#AP-1.1",
+          "ap-us-0001-v2.0#AP-7.1",
+          "ap-us-0001-v1.0#AP-1.1",
+          "ap-us-0001-v1.0#AP-4.1",
+          "ap-us-0001-v2.0#AP-4.1",
+          "ap-us-0001-v1.0#AP-3.1",
+          "ap-us-0001-v2.0#AP-3.1"
+        ],
+        "gold": [
+          "ap-us-0001-v1.0#AP-6.1"
+        ],
+        "found": [
+          "ap-us-0001-v1.0#AP-6.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "ap-us-0001-v1.0",
+          "ap-us-0001-v2.0"
+        ],
+        "gold": [
+          "ap-us-0001-v1.0"
+        ],
+        "found": [
+          "ap-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9946
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "live_alcohol_is_not_reimbursable",
+      "group": "extra",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "exp-us-0001-v1.0#EXP-4.2",
+          "exp-us-0001-v1.0#EXP-2.1",
+          "exp-us-0001-v1.0#EXP-7.1",
+          "exp-us-0001-v1.0#EXP-8.1",
+          "exp-us-0001-v1.0#EXP-6.1",
+          "exp-us-0001-v1.0#EXP-4.1",
+          "exp-us-0001-v1.0#EXP-4.3",
+          "exp-us-0001-v1.0#EXP-3.2",
+          "exp-us-0001-v1.0#EXP-3.1",
+          "exp-us-0001-v1.0#EXP-5.1"
+        ],
+        "gold": [
+          "exp-us-0001-v1.0#EXP-4.2"
+        ],
+        "found": [
+          "exp-us-0001-v1.0#EXP-4.2"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "exp-us-0001-v1.0"
+        ],
+        "gold": [
+          "exp-us-0001-v1.0"
+        ],
+        "found": [
+          "exp-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9942
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "live_receipt_threshold",
+      "group": "extra",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "exp-us-0001-v1.0#EXP-3.2",
+          "exp-us-0001-v1.0#EXP-2.1",
+          "exp-us-0001-v1.0#EXP-3.1",
+          "exp-us-0001-v1.0#EXP-5.1",
+          "exp-us-0001-v1.0#EXP-8.1",
+          "exp-us-0001-v1.0#EXP-4.2",
+          "exp-us-0001-v1.0#EXP-6.1",
+          "exp-us-0001-v1.0#EXP-1.1",
+          "exp-us-0001-v1.0#EXP-4.3",
+          "ap-us-0001-v2.0#AP-4.1"
+        ],
+        "gold": [
+          "exp-us-0001-v1.0#EXP-3.2"
+        ],
+        "found": [
+          "exp-us-0001-v1.0#EXP-3.2"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "exp-us-0001-v1.0"
+        ],
+        "gold": [
+          "exp-us-0001-v1.0"
+        ],
+        "found": [
+          "exp-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9938
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "live_post_lock_no_adjustments",
+      "group": "extra",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "mec-us-0001-v1.0#MEC-6.1",
+          "mec-us-0001-v1.0#MEC-3.2",
+          "mec-us-0001-v1.0#MEC-8.1",
+          "mec-us-0001-v1.0#MEC-3.1",
+          "mec-us-0001-v1.0#MEC-7.1",
+          "mec-us-0001-v1.0#MEC-1.1",
+          "mec-us-0001-v1.0#MEC-2.1",
+          "mec-us-0001-v1.0#MEC-8.3",
+          "mec-us-0001-v1.0#MEC-5.2",
+          "mec-us-0001-v1.0#MEC-4.1"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0#MEC-6.1"
+        ],
+        "found": [
+          "mec-us-0001-v1.0#MEC-6.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "mec-us-0001-v1.0"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0"
+        ],
+        "found": [
+          "mec-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.995
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "live_account_2100_stays_in_the_table",
+      "group": "extra",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "mec-us-0001-v1.0#MEC-8.2",
+          "mec-us-0001-v1.0#MEC-2.1",
+          "ap-us-0001-v2.0#AP-1.1",
+          "mec-us-0001-v1.0#MEC-5.1",
+          "ap-us-0001-v2.0#AP-4.1",
+          "mec-us-0001-v1.0#MEC-4.1",
+          "ap-us-0001-v2.0#AP-4.2",
+          "ap-us-0001-v2.0#AP-8.1",
+          "mec-us-0001-v1.0#MEC-1.1",
+          "mec-us-0001-v1.0#MEC-3.2"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0#MEC-5.1"
+        ],
+        "found": [
+          "mec-us-0001-v1.0#MEC-5.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "mec-us-0001-v1.0"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0"
+        ],
+        "found": [
+          "mec-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9886
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_live_wording_of_the_replaced_rule",
+      "group": "stress",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "ap-us-0001-v2.0#AP-5.1",
+          "ap-us-0001-v2.0#AP-7.1",
+          "ap-us-0001-v2.0#AP-1.1",
+          "exp-us-0001-v1.0#EXP-4.3",
+          "exp-us-0001-v1.0#EXP-3.2",
+          "ap-us-0001-v2.0#AP-3.1",
+          "exp-us-0001-v1.0#EXP-1.1",
+          "ap-us-0001-v2.0#AP-4.1",
+          "exp-us-0001-v1.0#EXP-3.1",
+          "ap-us-0001-v2.0#AP-4.2"
+        ],
+        "gold": [
+          "ap-us-0001-v2.0#AP-5.1"
+        ],
+        "found": [
+          "ap-us-0001-v2.0#AP-5.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "ap-us-0001-v2.0",
+          "mec-us-0001-v1.0"
+        ],
+        "gold": [
+          "ap-us-0001-v2.0"
+        ],
+        "found": [
+          "ap-us-0001-v2.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9865
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_ten_thousand_paraphrase",
+      "group": "stress",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "ap-us-0001-v2.0#AP-1.1",
+          "ap-us-0001-v2.0#AP-5.1",
+          "exp-us-0001-v1.0#EXP-3.2",
+          "ap-us-0001-v2.0#AP-4.2",
+          "ap-us-0001-v2.0#AP-2.1",
+          "ap-us-0001-v2.0#AP-3.1",
+          "exp-us-0001-v1.0#EXP-8.1",
+          "mec-us-0001-v1.0#MEC-5.1",
+          "exp-us-0001-v1.0#EXP-1.1",
+          "exp-us-0001-v1.0#EXP-4.3"
+        ],
+        "gold": [
+          "ap-us-0001-v2.0#AP-5.1"
+        ],
+        "found": [
+          "ap-us-0001-v2.0#AP-5.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "ap-us-0001-v2.0"
+        ],
+        "gold": [
+          "ap-us-0001-v2.0"
+        ],
+        "found": [
+          "ap-us-0001-v2.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9865
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_clerk_can_release_under_the_limit",
+      "group": "stress",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "ap-us-0001-v2.0#AP-5.1",
+          "ap-us-0001-v2.0#AP-7.1",
+          "ap-us-0001-v2.0#AP-4.1",
+          "ap-us-0001-v2.0#AP-1.1",
+          "ap-us-0001-v2.0#AP-3.1",
+          "ap-us-0001-v2.0#AP-8.1",
+          "ap-us-0001-v2.0#AP-4.2",
+          "ap-us-0001-v2.0#AP-6.1",
+          "ap-us-0001-v2.0#AP-3.2",
+          "ap-us-0001-v2.0#AP-2.1"
+        ],
+        "gold": [
+          "ap-us-0001-v2.0#AP-5.1"
+        ],
+        "found": [
+          "ap-us-0001-v2.0#AP-5.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "ap-us-0001-v2.0"
+        ],
+        "gold": [
+          "ap-us-0001-v2.0"
+        ],
+        "found": [
+          "ap-us-0001-v2.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9672
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_hold_does_not_start_the_clock",
+      "group": "stress",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "ap-us-0001-v2.0#AP-6.1",
+          "ap-us-0001-v2.0#AP-3.2",
+          "ap-us-0001-v2.0#AP-4.2",
+          "ap-us-0001-v2.0#AP-4.1",
+          "ap-us-0001-v2.0#AP-1.1",
+          "ap-us-0001-v2.0#AP-2.1",
+          "ap-us-0001-v2.0#AP-3.1",
+          "ap-us-0001-v2.0#AP-5.1",
+          "ap-us-0001-v2.0#AP-8.1",
+          "ap-us-0001-v2.0#AP-7.1"
+        ],
+        "gold": [
+          "ap-us-0001-v2.0#AP-3.2"
+        ],
+        "found": [
+          "ap-us-0001-v2.0#AP-3.2"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "ap-us-0001-v2.0"
+        ],
+        "gold": [
+          "ap-us-0001-v2.0"
+        ],
+        "found": [
+          "ap-us-0001-v2.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9917
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_no_po_is_unmatched",
+      "group": "stress",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "ap-us-0001-v2.0#AP-2.1",
+          "ap-us-0001-v2.0#AP-4.1",
+          "ap-us-0001-v2.0#AP-6.1",
+          "ap-us-0001-v2.0#AP-4.2",
+          "ap-us-0001-v2.0#AP-3.2",
+          "ap-us-0001-v2.0#AP-3.1",
+          "ap-us-0001-v2.0#AP-8.1",
+          "ap-us-0001-v2.0#AP-5.1",
+          "ap-us-0001-v2.0#AP-1.1",
+          "ap-us-0001-v2.0#AP-7.1"
+        ],
+        "gold": [
+          "ap-us-0001-v2.0#AP-4.1"
+        ],
+        "found": [
+          "ap-us-0001-v2.0#AP-4.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "ap-us-0001-v2.0"
+        ],
+        "gold": [
+          "ap-us-0001-v2.0"
+        ],
+        "found": [
+          "ap-us-0001-v2.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.971
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_send_back_to_vendor",
+      "group": "stress",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "ap-us-0001-v2.0#AP-6.1",
+          "ap-us-0001-v2.0#AP-3.2",
+          "ap-us-0001-v2.0#AP-5.1",
+          "ap-us-0001-v2.0#AP-7.1",
+          "ap-us-0001-v2.0#AP-3.1",
+          "ap-us-0001-v2.0#AP-1.1",
+          "ap-us-0001-v2.0#AP-4.2",
+          "ap-us-0001-v2.0#AP-2.1",
+          "ap-us-0001-v2.0#AP-4.1",
+          "exp-us-0001-v1.0#EXP-6.1"
+        ],
+        "gold": [
+          "ap-us-0001-v2.0#AP-7.1"
+        ],
+        "found": [
+          "ap-us-0001-v2.0#AP-7.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "ap-us-0001-v2.0"
+        ],
+        "gold": [
+          "ap-us-0001-v2.0"
+        ],
+        "found": [
+          "ap-us-0001-v2.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9935
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_current_version_is_the_payment_rule",
+      "group": "stress",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "ap-us-0001-v2.0#AP-3.1",
+          "ap-us-0001-v2.0#AP-1.1",
+          "ap-us-0001-v2.0#AP-4.2",
+          "exp-us-0001-v1.0#EXP-8.1",
+          "ap-us-0001-v2.0#AP-5.1",
+          "mec-us-0001-v1.0#MEC-5.1",
+          "ap-us-0001-v2.0#AP-3.2",
+          "ap-us-0001-v2.0#AP-2.1",
+          "ap-us-0001-v2.0#AP-7.1",
+          "exp-us-0001-v1.0#EXP-1.1"
+        ],
+        "gold": [
+          "ap-us-0001-v2.0#AP-1.1"
+        ],
+        "found": [
+          "ap-us-0001-v2.0#AP-1.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "ap-us-0001-v2.0"
+        ],
+        "gold": [
+          "ap-us-0001-v2.0"
+        ],
+        "found": [
+          "ap-us-0001-v2.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9854
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_retired_amount",
+      "group": "stress",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "ap-us-0001-v2.0#AP-5.1",
+          "ap-us-0001-v1.0#AP-5.1",
+          "ap-us-0001-v1.0#AP-7.1",
+          "ap-us-0001-v2.0#AP-7.1",
+          "ap-us-0001-v2.0#AP-1.1",
+          "ap-us-0001-v1.0#AP-4.1",
+          "ap-us-0001-v2.0#AP-4.1",
+          "ap-us-0001-v1.0#AP-3.1",
+          "ap-us-0001-v2.0#AP-3.1",
+          "ap-us-0001-v1.0#AP-6.1"
+        ],
+        "gold": [
+          "ap-us-0001-v1.0#AP-5.1"
+        ],
+        "found": [
+          "ap-us-0001-v1.0#AP-5.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "ap-us-0001-v1.0",
+          "ap-us-0001-v2.0"
+        ],
+        "gold": [
+          "ap-us-0001-v1.0"
+        ],
+        "found": [
+          "ap-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9855
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_pay_window_old_and_new",
+      "group": "stress",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "ap-us-0001-v1.0#AP-6.1",
+          "ap-us-0001-v1.0#AP-3.2",
+          "ap-us-0001-v1.0#AP-3.1",
+          "ap-us-0001-v1.0#AP-8.1",
+          "ap-us-0001-v1.0#AP-5.1",
+          "ap-us-0001-v2.0#AP-6.1",
+          "ap-us-0001-v2.0#AP-3.2",
+          "ap-us-0001-v2.0#AP-3.1",
+          "ap-us-0001-v2.0#AP-8.1",
+          "ap-us-0001-v2.0#AP-4.1"
+        ],
+        "gold": [
+          "ap-us-0001-v1.0#AP-6.1",
+          "ap-us-0001-v2.0#AP-6.1"
+        ],
+        "found": [
+          "ap-us-0001-v1.0#AP-6.1",
+          "ap-us-0001-v2.0#AP-6.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "ap-us-0001-v1.0",
+          "ap-us-0001-v2.0"
+        ],
+        "gold": [
+          "ap-us-0001-v1.0",
+          "ap-us-0001-v2.0"
+        ],
+        "found": [
+          "ap-us-0001-v1.0",
+          "ap-us-0001-v2.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 2,
+      "gold_chunks": 2,
+      "missing_chunks": [],
+      "facts_found": 2,
+      "facts": 2,
+      "missing_facts": [],
+      "entailment": [
+        0.9946,
+        0.9955
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_meal_over_cap_needs_supervisor",
+      "group": "stress",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "exp-us-0001-v1.0#EXP-4.3",
+          "exp-us-0001-v1.0#EXP-4.1",
+          "exp-us-0001-v1.0#EXP-8.1",
+          "exp-us-0001-v1.0#EXP-4.2",
+          "exp-us-0001-v1.0#EXP-6.1",
+          "exp-us-0001-v1.0#EXP-2.1",
+          "ap-us-0001-v2.0#AP-5.1",
+          "exp-us-0001-v1.0#EXP-3.2",
+          "ap-us-0001-v2.0#AP-7.1",
+          "exp-us-0001-v1.0#EXP-7.1"
+        ],
+        "gold": [
+          "exp-us-0001-v1.0#EXP-4.3"
+        ],
+        "found": [
+          "exp-us-0001-v1.0#EXP-4.3"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "exp-us-0001-v1.0"
+        ],
+        "gold": [
+          "exp-us-0001-v1.0"
+        ],
+        "found": [
+          "exp-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9847
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_cap_is_not_a_daily_total",
+      "group": "stress",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "exp-us-0001-v1.0#EXP-4.1",
+          "exp-us-0001-v1.0#EXP-4.3",
+          "exp-us-0001-v1.0#EXP-8.1",
+          "exp-us-0001-v1.0#EXP-6.1",
+          "mec-us-0001-v1.0#MEC-2.1",
+          "mec-us-0001-v1.0#MEC-8.3",
+          "mec-us-0001-v1.0#MEC-5.1",
+          "exp-us-0001-v1.0#EXP-2.1",
+          "exp-us-0001-v1.0#EXP-4.2",
+          "mec-us-0001-v1.0#MEC-1.1"
+        ],
+        "gold": [
+          "exp-us-0001-v1.0#EXP-4.1"
+        ],
+        "found": [
+          "exp-us-0001-v1.0#EXP-4.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "exp-us-0001-v1.0"
+        ],
+        "gold": [
+          "exp-us-0001-v1.0"
+        ],
+        "found": [
+          "exp-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9401
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_expense_clock_is_from_the_incurred_date",
+      "group": "stress",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "exp-us-0001-v1.0#EXP-5.1",
+          "exp-us-0001-v1.0#EXP-6.1",
+          "exp-us-0001-v1.0#EXP-8.1",
+          "exp-us-0001-v1.0#EXP-3.1",
+          "exp-us-0001-v1.0#EXP-3.2",
+          "exp-us-0001-v1.0#EXP-7.1",
+          "ap-us-0001-v2.0#AP-6.1",
+          "exp-us-0001-v1.0#EXP-4.3",
+          "exp-us-0001-v1.0#EXP-2.1",
+          "mec-us-0001-v1.0#MEC-5.1"
+        ],
+        "gold": [
+          "exp-us-0001-v1.0#EXP-5.1"
+        ],
+        "found": [
+          "exp-us-0001-v1.0#EXP-5.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "exp-us-0001-v1.0"
+        ],
+        "gold": [
+          "exp-us-0001-v1.0"
+        ],
+        "found": [
+          "exp-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9877
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_late_claim_needs_supervisor",
+      "group": "stress",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "exp-us-0001-v1.0#EXP-3.1",
+          "exp-us-0001-v1.0#EXP-5.1",
+          "exp-us-0001-v1.0#EXP-3.2",
+          "exp-us-0001-v1.0#EXP-2.1",
+          "exp-us-0001-v1.0#EXP-1.1",
+          "exp-us-0001-v1.0#EXP-7.1",
+          "exp-us-0001-v1.0#EXP-8.1",
+          "ap-us-0001-v2.0#AP-8.1",
+          "ap-us-0001-v2.0#AP-5.1",
+          "exp-us-0001-v1.0#EXP-4.3"
+        ],
+        "gold": [
+          "exp-us-0001-v1.0#EXP-5.1"
+        ],
+        "found": [
+          "exp-us-0001-v1.0#EXP-5.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "exp-us-0001-v1.0"
+        ],
+        "gold": [
+          "exp-us-0001-v1.0"
+        ],
+        "found": [
+          "exp-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9802
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_missing_purpose_is_returned",
+      "group": "stress",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "exp-us-0001-v1.0#EXP-3.1",
+          "exp-us-0001-v1.0#EXP-8.1",
+          "exp-us-0001-v1.0#EXP-3.2",
+          "exp-us-0001-v1.0#EXP-2.1",
+          "exp-us-0001-v1.0#EXP-7.1",
+          "exp-us-0001-v1.0#EXP-5.1",
+          "exp-us-0001-v1.0#EXP-6.1",
+          "exp-us-0001-v1.0#EXP-1.1",
+          "exp-us-0001-v1.0#EXP-4.2",
+          "exp-us-0001-v1.0#EXP-4.1"
+        ],
+        "gold": [
+          "exp-us-0001-v1.0#EXP-3.1"
+        ],
+        "found": [
+          "exp-us-0001-v1.0#EXP-3.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "exp-us-0001-v1.0"
+        ],
+        "gold": [
+          "exp-us-0001-v1.0"
+        ],
+        "found": [
+          "exp-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.982
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_meals_cannot_be_pooled",
+      "group": "stress",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "exp-us-0001-v1.0#EXP-4.1",
+          "exp-us-0001-v1.0#EXP-8.1",
+          "exp-us-0001-v1.0#EXP-4.3",
+          "mec-us-0001-v1.0#MEC-8.3",
+          "exp-us-0001-v1.0#EXP-4.2",
+          "exp-us-0001-v1.0#EXP-6.1",
+          "exp-us-0001-v1.0#EXP-2.1",
+          "mec-us-0001-v1.0#MEC-8.2",
+          "ap-us-0001-v2.0#AP-3.1",
+          "mec-us-0001-v1.0#MEC-5.1"
+        ],
+        "gold": [
+          "exp-us-0001-v1.0#EXP-8.1"
+        ],
+        "found": [
+          "exp-us-0001-v1.0#EXP-8.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "exp-us-0001-v1.0",
+          "mec-us-0001-v1.0"
+        ],
+        "gold": [
+          "exp-us-0001-v1.0"
+        ],
+        "found": [
+          "exp-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9881
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_drink_comes_off_the_bill",
+      "group": "stress",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "exp-us-0001-v1.0#EXP-4.2",
+          "exp-us-0001-v1.0#EXP-8.1",
+          "exp-us-0001-v1.0#EXP-4.3",
+          "exp-us-0001-v1.0#EXP-6.1",
+          "exp-us-0001-v1.0#EXP-4.1",
+          "exp-us-0001-v1.0#EXP-2.1",
+          "ap-us-0001-v2.0#AP-4.1",
+          "exp-us-0001-v1.0#EXP-7.1",
+          "ap-us-0001-v2.0#AP-4.2",
+          "ap-us-0001-v2.0#AP-5.1"
+        ],
+        "gold": [
+          "exp-us-0001-v1.0#EXP-8.1"
+        ],
+        "found": [
+          "exp-us-0001-v1.0#EXP-8.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "exp-us-0001-v1.0"
+        ],
+        "gold": [
+          "exp-us-0001-v1.0"
+        ],
+        "found": [
+          "exp-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.961
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_close_does_not_reopen_expenses",
+      "group": "stress",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "exp-us-0001-v1.0#EXP-8.1",
+          "exp-us-0001-v1.0#EXP-5.1",
+          "mec-us-0001-v1.0#MEC-8.2",
+          "exp-us-0001-v1.0#EXP-3.2",
+          "exp-us-0001-v1.0#EXP-3.1",
+          "mec-us-0001-v1.0#MEC-7.1",
+          "exp-us-0001-v1.0#EXP-6.1",
+          "exp-us-0001-v1.0#EXP-7.1",
+          "mec-us-0001-v1.0#MEC-8.1",
+          "ap-us-0001-v2.0#AP-6.1"
+        ],
+        "gold": [
+          "exp-us-0001-v1.0#EXP-8.1"
+        ],
+        "found": [
+          "exp-us-0001-v1.0#EXP-8.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "exp-us-0001-v1.0",
+          "mec-us-0001-v1.0"
+        ],
+        "gold": [
+          "exp-us-0001-v1.0"
+        ],
+        "found": [
+          "exp-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9931
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_cash_code_is_not_the_travel_code",
+      "group": "stress",
+      "pass": false,
+      "vector": {
+        "retrieved": [
+          "mec-us-0001-v1.0#MEC-5.1",
+          "mec-us-0001-v1.0#MEC-2.1",
+          "mec-us-0001-v1.0#MEC-4.1",
+          "mec-us-0001-v1.0#MEC-8.2",
+          "mec-us-0001-v1.0#MEC-4.2",
+          "mec-us-0001-v1.0#MEC-8.1",
+          "exp-us-0001-v1.0#EXP-8.1",
+          "mec-us-0001-v1.0#MEC-1.1",
+          "mec-us-0001-v1.0#MEC-3.2",
+          "mec-us-0001-v1.0#MEC-3.1"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0#MEC-5.1"
+        ],
+        "found": [
+          "mec-us-0001-v1.0#MEC-5.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "mec-us-0001-v1.0"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0"
+        ],
+        "found": [
+          "mec-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 2,
+      "facts": 2,
+      "missing_facts": [],
+      "entailment": [
+        0.9836,
+        0.3654
+      ],
+      "tau_pass": false,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_payroll_must_log_before_lock_day",
+      "group": "stress",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "exp-us-0001-v1.0#EXP-8.1",
+          "mec-us-0001-v1.0#MEC-2.1",
+          "mec-us-0001-v1.0#MEC-5.1",
+          "mec-us-0001-v1.0#MEC-3.2",
+          "ap-us-0001-v2.0#AP-7.1",
+          "ap-us-0001-v2.0#AP-6.1",
+          "mec-us-0001-v1.0#MEC-3.1",
+          "exp-us-0001-v1.0#EXP-5.1",
+          "ap-us-0001-v2.0#AP-5.1",
+          "mec-us-0001-v1.0#MEC-8.1"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0#MEC-5.1"
+        ],
+        "found": [
+          "mec-us-0001-v1.0#MEC-5.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "mec-us-0001-v1.0"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0"
+        ],
+        "found": [
+          "mec-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9893
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_airfare_code_lives_in_the_table",
+      "group": "stress",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "mec-us-0001-v1.0#MEC-8.2",
+          "mec-us-0001-v1.0#MEC-5.1",
+          "mec-us-0001-v1.0#MEC-8.3",
+          "mec-us-0001-v1.0#MEC-2.1",
+          "exp-us-0001-v1.0#EXP-8.1",
+          "mec-us-0001-v1.0#MEC-1.1",
+          "mec-us-0001-v1.0#MEC-5.2",
+          "mec-us-0001-v1.0#MEC-3.2",
+          "mec-us-0001-v1.0#MEC-4.1",
+          "mec-us-0001-v1.0#MEC-7.1"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0#MEC-5.1"
+        ],
+        "found": [
+          "mec-us-0001-v1.0#MEC-5.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "mec-us-0001-v1.0",
+          "exp-us-0001-v1.0"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0"
+        ],
+        "found": [
+          "mec-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9957
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_late_travel_does_not_reopen_the_month",
+      "group": "stress",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "mec-us-0001-v1.0#MEC-8.2",
+          "mec-us-0001-v1.0#MEC-3.2",
+          "mec-us-0001-v1.0#MEC-8.3",
+          "mec-us-0001-v1.0#MEC-7.1",
+          "mec-us-0001-v1.0#MEC-3.1",
+          "mec-us-0001-v1.0#MEC-8.1",
+          "exp-us-0001-v1.0#EXP-8.1",
+          "mec-us-0001-v1.0#MEC-6.1",
+          "mec-us-0001-v1.0#MEC-2.1",
+          "mec-us-0001-v1.0#MEC-1.1"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0#MEC-8.2"
+        ],
+        "found": [
+          "mec-us-0001-v1.0#MEC-8.2"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "mec-us-0001-v1.0",
+          "exp-us-0001-v1.0"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0"
+        ],
+        "found": [
+          "mec-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9912
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_no_weekend_lock",
+      "group": "stress",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "mec-us-0001-v1.0#MEC-8.3",
+          "mec-us-0001-v1.0#MEC-3.2",
+          "mec-us-0001-v1.0#MEC-7.1",
+          "mec-us-0001-v1.0#MEC-2.1",
+          "mec-us-0001-v1.0#MEC-6.1",
+          "mec-us-0001-v1.0#MEC-3.1",
+          "mec-us-0001-v1.0#MEC-8.1",
+          "mec-us-0001-v1.0#MEC-1.1",
+          "mec-us-0001-v1.0#MEC-5.1",
+          "mec-us-0001-v1.0#MEC-8.2"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0#MEC-8.3"
+        ],
+        "found": [
+          "mec-us-0001-v1.0#MEC-8.3"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "mec-us-0001-v1.0"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0"
+        ],
+        "found": [
+          "mec-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9972
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_bad_job_id_is_reversed",
+      "group": "stress",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "mec-us-0001-v1.0#MEC-4.1",
+          "mec-us-0001-v1.0#MEC-4.2",
+          "mec-us-0001-v1.0#MEC-2.1",
+          "mec-us-0001-v1.0#MEC-8.1",
+          "mec-us-0001-v1.0#MEC-6.1",
+          "mec-us-0001-v1.0#MEC-3.1",
+          "mec-us-0001-v1.0#MEC-7.1",
+          "mec-us-0001-v1.0#MEC-3.2",
+          "exp-us-0001-v1.0#EXP-8.1",
+          "mec-us-0001-v1.0#MEC-8.2"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0#MEC-4.1"
+        ],
+        "found": [
+          "mec-us-0001-v1.0#MEC-4.1"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "mec-us-0001-v1.0"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0"
+        ],
+        "found": [
+          "mec-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.9948
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_miscode_after_lock_waits",
+      "group": "stress",
+      "pass": false,
+      "vector": {
+        "retrieved": [
+          "mec-us-0001-v1.0#MEC-5.2",
+          "mec-us-0001-v1.0#MEC-3.2",
+          "mec-us-0001-v1.0#MEC-6.1",
+          "mec-us-0001-v1.0#MEC-7.1",
+          "mec-us-0001-v1.0#MEC-8.1",
+          "mec-us-0001-v1.0#MEC-2.1",
+          "mec-us-0001-v1.0#MEC-5.1",
+          "mec-us-0001-v1.0#MEC-8.3",
+          "mec-us-0001-v1.0#MEC-1.1",
+          "mec-us-0001-v1.0#MEC-3.1"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0#MEC-5.2"
+        ],
+        "found": [
+          "mec-us-0001-v1.0#MEC-5.2"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "mec-us-0001-v1.0"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0"
+        ],
+        "found": [
+          "mec-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.0005
+      ],
+      "tau_pass": false,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_lock_itself_needs_finance_manager",
+      "group": "stress",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "mec-us-0001-v1.0#MEC-3.1",
+          "mec-us-0001-v1.0#MEC-3.2",
+          "mec-us-0001-v1.0#MEC-8.1",
+          "mec-us-0001-v1.0#MEC-6.1",
+          "mec-us-0001-v1.0#MEC-7.1",
+          "mec-us-0001-v1.0#MEC-5.2",
+          "mec-us-0001-v1.0#MEC-8.3",
+          "mec-us-0001-v1.0#MEC-2.1",
+          "mec-us-0001-v1.0#MEC-4.2",
+          "ap-us-0001-v2.0#AP-5.1"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0#MEC-3.2"
+        ],
+        "found": [
+          "mec-us-0001-v1.0#MEC-3.2"
+        ],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "mec-us-0001-v1.0"
+        ],
+        "gold": [
+          "mec-us-0001-v1.0"
+        ],
+        "found": [
+          "mec-us-0001-v1.0"
+        ],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 1,
+      "gold_chunks": 1,
+      "missing_chunks": [],
+      "facts_found": 1,
+      "facts": 1,
+      "missing_facts": [],
+      "entailment": [
+        0.995
+      ],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    },
+    {
+      "name": "stress_pii_is_not_in_the_answer",
+      "group": "stress",
+      "pass": true,
+      "vector": {
+        "retrieved": [
+          "mec-us-0001-v1.0#MEC-4.1",
+          "mec-us-0001-v1.0#MEC-5.1",
+          "mec-us-0001-v1.0#MEC-4.2",
+          "exp-us-0001-v1.0#EXP-1.1",
+          "exp-us-0001-v1.0#EXP-7.1",
+          "exp-us-0001-v1.0#EXP-3.2",
+          "exp-us-0001-v1.0#EXP-6.1",
+          "exp-us-0001-v1.0#EXP-3.1",
+          "mec-us-0001-v1.0#MEC-2.1",
+          "ap-us-0001-v2.0#AP-8.1"
+        ],
+        "gold": [],
+        "found": [],
+        "missing": []
+      },
+      "record": {
+        "cited": [
+          "mec-us-0001-v1.0",
+          "exp-us-0001-v1.0"
+        ],
+        "gold": [],
+        "found": [],
+        "missing": [],
+        "leaked": []
+      },
+      "chunks_found": 0,
+      "gold_chunks": 0,
+      "missing_chunks": [],
+      "facts_found": 0,
+      "facts": 0,
+      "missing_facts": [],
+      "entailment": [],
+      "tau_pass": true,
+      "leaked": [],
+      "missing_authority": []
+    }
+  ]
+}

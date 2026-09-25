@@ -79,6 +79,7 @@ def ask(
             chunk_ids=list(prior.chunk_ids),
             scores=list(prior.scores),
             sources=list(prior.sources),
+            vector_ids=list(prior.vector_ids),
             latencies_ms={
                 "retrieve": 0.0,
                 "generate": 0.0,
@@ -92,10 +93,12 @@ def ask(
     vector = embedder.embed([query])[0]
     if scope == SCOPE_COMPARE:
         hits = retrieve_both_versions(vector, store, settings)
+        vector_ids = [hit.chunk.chunk_id for hit in hits]
     else:
         vector_hits, keyword_hits, hits = hybrid_retrieve(
             query, vector, store, where, settings
         )
+        vector_ids = [hit.chunk.chunk_id for hit in vector_hits]
         log.info(
             "query.hybrid",
             vector_ids=[hit.chunk.chunk_id for hit in vector_hits],
@@ -143,6 +146,7 @@ def ask(
         cache_hit=False,
         where=where,
         hits=hits,
+        vector_ids=vector_ids,
         retrieve_ms=retrieve_ms,
         generate_ms=generate_ms,
         started=started,
@@ -158,7 +162,7 @@ def _normalize(query: str) -> str:
     return " ".join(query.lower().split())
 
 
-def _trace(*, request_id, ingest_run_id, embedding_model, settings, scope, cache_hit, where, hits, retrieve_ms, generate_ms, started) -> QueryTrace:
+def _trace(*, request_id, ingest_run_id, embedding_model, settings, scope, cache_hit, where, hits, vector_ids, retrieve_ms, generate_ms, started) -> QueryTrace:
     return QueryTrace(
         request_id=request_id,
         ingest_run_id=ingest_run_id,
@@ -171,6 +175,7 @@ def _trace(*, request_id, ingest_run_id, embedding_model, settings, scope, cache
         chunk_ids=[hit.chunk.chunk_id for hit in hits],
         scores=[hit.score for hit in hits],
         sources=[hit.source for hit in hits],
+        vector_ids=list(vector_ids),
         latencies_ms={
             "retrieve": round(retrieve_ms, 3),
             "generate": round(generate_ms, 3),

@@ -1,0 +1,853 @@
+{
+  "rubric": [
+    {
+      "name": "live_approval_is_current_v2",
+      "query": "What is the invoice approval threshold?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "ap-us-0001-v2.0#AP-5.1"
+      ],
+      "must_record_ids": [
+        "ap-us-0001-v2.0"
+      ],
+      "must_not_record_ids": [
+        "ap-us-0001-v1.0"
+      ],
+      "must_contain": [
+        "$10,000"
+      ],
+      "must_not_contain": [
+        "$7,500",
+        "EE-4419",
+        "priya",
+        "8821"
+      ],
+      "must_authority": [],
+      "must_entail": [
+        "An invoice of $10,000 or more requires finance manager approval."
+      ]
+    },
+    {
+      "name": "diagnosis_surfaces_replaced_v1",
+      "query": "What invoice amount needs finance manager approval?",
+      "scope": "diagnosis",
+      "must_chunk_ids": [
+        "ap-us-0001-v1.0#AP-5.1"
+      ],
+      "must_record_ids": [
+        "ap-us-0001-v1.0"
+      ],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "$7,500"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "An invoice of $7,500 or more requires finance manager approval."
+      ]
+    },
+    {
+      "name": "live_6100_is_the_coding_table",
+      "query": "What is account code 6100 used for at travel close?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "mec-us-0001-v1.0#MEC-5.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "6100"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "Account code 6100 is used for travel costs."
+      ]
+    },
+    {
+      "name": "live_lock_timing",
+      "query": "When is the close period locked?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "mec-us-0001-v1.0#MEC-3.2"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "5th workday"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "The close period is locked on the 5th workday."
+      ]
+    },
+    {
+      "name": "live_posting_job_ids_are_not_pii",
+      "query": "Which job IDs may post records during close?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "mec-us-0001-v1.0#MEC-4.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "US-0984"
+      ],
+      "must_not_contain": [
+        "EE-4419",
+        "priya",
+        "8821"
+      ],
+      "must_authority": [],
+      "must_entail": [
+        "US-0984 is authorized to post records during close."
+      ]
+    },
+    {
+      "name": "live_expense_faq_is_cited",
+      "query": "Does writing client lunch in the purpose box replace the slip?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "exp-us-0001-v1.0#EXP-8.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "does not replace the slip"
+      ],
+      "must_not_contain": [],
+      "must_authority": [
+        [
+          "EXP-8.1",
+          "advisory"
+        ]
+      ],
+      "must_entail": [
+        "Writing client lunch in the purpose box does not replace the slip."
+      ]
+    },
+    {
+      "name": "live_payment_window_is_30_days",
+      "query": "How many days after the three-way match must an invoice be paid?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "ap-us-0001-v2.0#AP-6.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [
+        "ap-us-0001-v1.0"
+      ],
+      "must_contain": [
+        "30 days"
+      ],
+      "must_not_contain": [
+        "45 days"
+      ],
+      "must_authority": [],
+      "must_entail": [
+        "An invoice must be paid within 30 days of the three-way match."
+      ]
+    },
+    {
+      "name": "live_meal_cap",
+      "query": "What is the reimbursable cap per meal?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "exp-us-0001-v1.0#EXP-4.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "$75"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "A meal expense of $75 or less per meal is reimbursable."
+      ]
+    }
+  ],
+  "extra": [
+    {
+      "name": "compare_cites_both_approval_rules",
+      "query": "What changed in the invoice approval threshold?",
+      "scope": "compare",
+      "must_chunk_ids": [
+        "ap-us-0001-v1.0#AP-5.1",
+        "ap-us-0001-v2.0#AP-5.1"
+      ],
+      "must_record_ids": [
+        "ap-us-0001-v1.0",
+        "ap-us-0001-v2.0"
+      ],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "$7,500",
+        "$10,000"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "An invoice of $7,500 or more requires finance manager approval.",
+        "An invoice of $10,000 or more requires finance manager approval."
+      ]
+    },
+    {
+      "name": "live_three_way_match",
+      "query": "When may an invoice be paid relative to the purchase order and delivery record?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "ap-us-0001-v2.0#AP-3.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [
+        "ap-us-0001-v1.0"
+      ],
+      "must_contain": [
+        "three-way match"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "A three-way match is required before an invoice proceeds to payment."
+      ]
+    },
+    {
+      "name": "live_duplicate_payment_control",
+      "query": "What happens if the same invoice number and vendor were already paid?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "ap-us-0001-v2.0#AP-4.2"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [
+        "ap-us-0001-v1.0"
+      ],
+      "must_contain": [
+        "flags a potential duplicate"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "The payment system flags a potential duplicate when the same invoice was already paid."
+      ]
+    },
+    {
+      "name": "compare_payment_window_both_versions",
+      "query": "What changed in the invoice payment period after three-way match?",
+      "scope": "compare",
+      "must_chunk_ids": [
+        "ap-us-0001-v1.0#AP-6.1",
+        "ap-us-0001-v2.0#AP-6.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "45 days",
+        "30 days"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "An invoice had to be paid within 45 days of the three-way match.",
+        "An invoice must be paid within 30 days of the three-way match."
+      ]
+    },
+    {
+      "name": "diagnosis_old_payment_window_is_45_days",
+      "query": "How many days was the invoice payment period in the replaced AP handbook?",
+      "scope": "diagnosis",
+      "must_chunk_ids": [
+        "ap-us-0001-v1.0#AP-6.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "45 days"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "An invoice had to be paid within 45 days of the three-way match."
+      ]
+    },
+    {
+      "name": "live_alcohol_is_not_reimbursable",
+      "query": "Is alcohol reimbursable on an expense claim?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "exp-us-0001-v1.0#EXP-4.2"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "Alcohol is not reimbursable"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "Alcohol is not reimbursable."
+      ]
+    },
+    {
+      "name": "live_receipt_threshold",
+      "query": "When must an employee attach a receipt to an expense?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "exp-us-0001-v1.0#EXP-3.2"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "$25"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "An employee must attach a receipt for an expense exceeding $25."
+      ]
+    },
+    {
+      "name": "live_post_lock_no_adjustments",
+      "query": "Can anyone adjust records after the close period is locked?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "mec-us-0001-v1.0#MEC-6.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "no adjustments or new entries"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "No adjustments or new entries may be made after the close period is locked."
+      ]
+    },
+    {
+      "name": "live_account_2100_stays_in_the_table",
+      "query": "What is account code 2100-AP used for at close?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "mec-us-0001-v1.0#MEC-5.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "2100-AP"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "Account code 2100-AP is used for unpaid bills."
+      ]
+    }
+  ],
+  "stress": [
+    {
+      "name": "stress_live_wording_of_the_replaced_rule",
+      "query": "What invoice amount needs finance manager approval?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "ap-us-0001-v2.0#AP-5.1"
+      ],
+      "must_record_ids": [
+        "ap-us-0001-v2.0"
+      ],
+      "must_not_record_ids": [
+        "ap-us-0001-v1.0"
+      ],
+      "must_contain": [
+        "$10,000"
+      ],
+      "must_not_contain": [
+        "$7,500",
+        "EE-4419",
+        "priya",
+        "8821"
+      ],
+      "must_authority": [],
+      "must_entail": [
+        "An invoice of $10,000 or more requires finance manager approval."
+      ]
+    },
+    {
+      "name": "stress_ten_thousand_paraphrase",
+      "query": "Who has to sign off before we pay a vendor bill of ten thousand dollars or more?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "ap-us-0001-v2.0#AP-5.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [
+        "ap-us-0001-v1.0"
+      ],
+      "must_contain": [
+        "$10,000"
+      ],
+      "must_not_contain": [
+        "$7,500"
+      ],
+      "must_authority": [],
+      "must_entail": [
+        "An invoice of $10,000 or more requires finance manager approval."
+      ]
+    },
+    {
+      "name": "stress_clerk_can_release_under_the_limit",
+      "query": "Can the AP clerk release an invoice below the approval threshold without the finance manager?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "ap-us-0001-v2.0#AP-5.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "without further approval"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "An invoice below this threshold may be released by the AP clerk without further approval."
+      ]
+    },
+    {
+      "name": "stress_hold_does_not_start_the_clock",
+      "query": "Does an invoice on hold start the payment countdown?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "ap-us-0001-v2.0#AP-3.2"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "does not begin the payment period"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "An invoice on hold does not begin the payment period until the discrepancy is resolved."
+      ]
+    },
+    {
+      "name": "stress_no_po_is_unmatched",
+      "query": "What happens to an invoice that arrives with no purchase order?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "ap-us-0001-v2.0#AP-4.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "recorded as unmatched"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "An invoice received without an associated purchase order is recorded as unmatched."
+      ]
+    },
+    {
+      "name": "stress_send_back_to_vendor",
+      "query": "Who can send an invoice back to the vendor when approval is still missing near the payment deadline?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "ap-us-0001-v2.0#AP-7.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "returned to the vendor"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "The finance manager may direct that the invoice be returned to the vendor."
+      ]
+    },
+    {
+      "name": "stress_current_version_is_the_payment_rule",
+      "query": "Which accounts payable version is the current rule for payment decisions?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "ap-us-0001-v2.0#AP-1.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [
+        "ap-us-0001-v1.0"
+      ],
+      "must_contain": [
+        "current rule for payment decisions"
+      ],
+      "must_not_contain": [
+        "$7,500"
+      ],
+      "must_authority": [],
+      "must_entail": [
+        "This version is the current rule for payment decisions."
+      ]
+    },
+    {
+      "name": "stress_retired_amount",
+      "query": "Before the current handbook, how large did an invoice have to be before a finance manager approved it?",
+      "scope": "diagnosis",
+      "must_chunk_ids": [
+        "ap-us-0001-v1.0#AP-5.1"
+      ],
+      "must_record_ids": [
+        "ap-us-0001-v1.0"
+      ],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "$7,500"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "An invoice of $7,500 or more requires finance manager approval."
+      ]
+    },
+    {
+      "name": "stress_pay_window_old_and_new",
+      "query": "What changed in the old and new deadline to pay an invoice after the match?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "ap-us-0001-v1.0#AP-6.1",
+        "ap-us-0001-v2.0#AP-6.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "45 days",
+        "30 days"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "An invoice had to be paid within 45 days of the three-way match.",
+        "An invoice must be paid within 30 days of the three-way match."
+      ]
+    },
+    {
+      "name": "stress_meal_over_cap_needs_supervisor",
+      "query": "What approval is required when a meal costs more than the reimbursable cap?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "exp-us-0001-v1.0#EXP-4.3"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "requires the approval of the employee's supervisor"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "A meal expense exceeding $75 requires the approval of the employee's supervisor."
+      ]
+    },
+    {
+      "name": "stress_cap_is_not_a_daily_total",
+      "query": "Does the meal cap apply to the whole day or to each meal?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "exp-us-0001-v1.0#EXP-4.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "not to an employee's total daily meal spend"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "The meal cap applies per individual meal, not to the total daily meal spend."
+      ]
+    },
+    {
+      "name": "stress_expense_clock_is_from_the_incurred_date",
+      "query": "How many days does an employee have to submit a claim after spending the money?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "exp-us-0001-v1.0#EXP-5.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "30 days of the date the expense was incurred"
+      ],
+      "must_not_contain": [
+        "three-way match"
+      ],
+      "must_authority": [],
+      "must_entail": [
+        "An employee shall submit an expense claim within 30 days of the date the expense was incurred."
+      ]
+    },
+    {
+      "name": "stress_late_claim_needs_supervisor",
+      "query": "What if an employee files an expense after the submission window?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "exp-us-0001-v1.0#EXP-5.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "A claim submitted after this period"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "A claim submitted after this period requires the approval of the employee's supervisor."
+      ]
+    },
+    {
+      "name": "stress_missing_purpose_is_returned",
+      "query": "What happens to an expense claim that has no business purpose?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "exp-us-0001-v1.0#EXP-3.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "returned to the employee"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "A claim missing an itemized business purpose is returned to the employee."
+      ]
+    },
+    {
+      "name": "stress_meals_cannot_be_pooled",
+      "query": "Can three meals on a travel day be claimed as one pile?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "exp-us-0001-v1.0#EXP-8.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "Each meal stands alone"
+      ],
+      "must_not_contain": [],
+      "must_authority": [
+        [
+          "EXP-8.1",
+          "advisory"
+        ]
+      ],
+      "must_entail": [
+        "Each meal stands alone."
+      ]
+    },
+    {
+      "name": "stress_drink_comes_off_the_bill",
+      "query": "Can a drink stay on the bill if the employee mostly ate food?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "exp-us-0001-v1.0#EXP-8.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "Take the drink off"
+      ],
+      "must_not_contain": [],
+      "must_authority": [
+        [
+          "EXP-8.1",
+          "advisory"
+        ]
+      ],
+      "must_entail": [
+        "Take the drink off before you submit or the whole claim comes back."
+      ]
+    },
+    {
+      "name": "stress_close_does_not_reopen_expenses",
+      "query": "Can a late expense claim from last month ride along with this month's close?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "exp-us-0001-v1.0#EXP-8.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "does not reopen an expense window"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "Close does not reopen an expense window."
+      ]
+    },
+    {
+      "name": "stress_cash_code_is_not_the_travel_code",
+      "query": "What account code is cash at close, and which job posts it?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "mec-us-0001-v1.0#MEC-5.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "1000-CASH",
+        "US-0001"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "Account code 1000-CASH is cash.",
+        "US-0001 posts the cash account."
+      ]
+    },
+    {
+      "name": "stress_payroll_must_log_before_lock_day",
+      "query": "When must the payroll accrual be in the books at close?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "mec-us-0001-v1.0#MEC-5.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "5000-PAY"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "Account code 5000-PAY is the payroll accrual."
+      ]
+    },
+    {
+      "name": "stress_airfare_code_lives_in_the_table",
+      "query": "Staff keep booking airfare late. Where is the account code for that travel written?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "mec-us-0001-v1.0#MEC-5.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "6100"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "Account code 6100 is used for travel costs."
+      ]
+    },
+    {
+      "name": "stress_late_travel_does_not_reopen_the_month",
+      "query": "Does a late travel report reopen the close month?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "mec-us-0001-v1.0#MEC-8.2"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "does not reopen the month"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "A late travel report does not reopen the month."
+      ]
+    },
+    {
+      "name": "stress_no_weekend_lock",
+      "query": "Can month-end lock happen on a weekend?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "mec-us-0001-v1.0#MEC-8.3"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "No weekend lock"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "There is no weekend lock."
+      ]
+    },
+    {
+      "name": "stress_bad_job_id_is_reversed",
+      "query": "What happens when someone not on the job ID list posts during close?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "mec-us-0001-v1.0#MEC-4.1"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "shall be reversed"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "A record posted by a job ID that is not authorized shall be reversed."
+      ]
+    },
+    {
+      "name": "stress_miscode_after_lock_waits",
+      "query": "If an account code is wrong after the period is locked, when is it fixed?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "mec-us-0001-v1.0#MEC-5.2"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "following period"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "After lock, a wrong code is treated in the following period."
+      ]
+    },
+    {
+      "name": "stress_lock_itself_needs_finance_manager",
+      "query": "Who must approve the close lock before it is applied?",
+      "scope": "live",
+      "must_chunk_ids": [
+        "mec-us-0001-v1.0#MEC-3.2"
+      ],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [
+        "finance manager shall approve the lock"
+      ],
+      "must_not_contain": [],
+      "must_authority": [],
+      "must_entail": [
+        "The finance manager shall approve the lock before it is applied."
+      ]
+    },
+    {
+      "name": "stress_pii_is_not_in_the_answer",
+      "query": "What is Priya Shah's employee id and card last four?",
+      "scope": "live",
+      "must_chunk_ids": [],
+      "must_record_ids": [],
+      "must_not_record_ids": [],
+      "must_contain": [],
+      "must_not_contain": [
+        "EE-4419",
+        "priya",
+        "8821"
+      ],
+      "must_authority": [],
+      "must_entail": []
+    }
+  ]
+}

@@ -99,6 +99,8 @@ class QueryTrace:
     scores: list[float]
     sources: list[str]
     latencies_ms: dict[str, float]
+    # Vector-search ids, before keyword fusion and rerank.
+    vector_ids: list[str] = field(default_factory=list)
 
 
 @dataclass
